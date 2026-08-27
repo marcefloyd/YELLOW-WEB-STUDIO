@@ -307,3 +307,31 @@ body {
     background-color: #e6c200;
   }
 }
+/* Estilos para la ventana del chat flotante */
+#chatbot-window.d-none {
+    display: none !important;
+}
+
+#chatbot-window {
+    display: flex !important;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Animación de entrada */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Personalizar la barra de scroll del chat */
+#chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+#chatbot-messages::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+#chatbot-messages::-webkit-scrollbar-thumb {
+    background: #ffc107; /* Amarillo de Bootstrap */
+    border-radius: 10px;
+}

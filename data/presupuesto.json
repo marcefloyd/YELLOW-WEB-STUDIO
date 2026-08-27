@@ -28,26 +28,47 @@
       "ejemplos": []
     },
     "personalizado": {
-  "id": "personalizado",
-  "nombre": "Desarrollo Personalizado",
-  "descripcion": "Diseño UI/UX exclusivo a medida sin plantillas para proyectos con identidad única.",
-  "precio": 650000,
-  "dias": 15,
-  "paginas": 4,
-  "ideal": [
-    "Startups",
-    "Marcas de Autor",
-    "Proyectos especiales"
-  ],
-  "incluye": [
-    "Hasta 4 Secciones a medida",
-    "Diseño UI/UX Exclusivo",
-    "Maquetado sin plantillas",
-    "Animaciones avanzadas",
-    "Soporte y asesoría dedicada"
-  ],
-  "ejemplos": []
-}
+      "id": "personalizado",
+      "nombre": "Desarrollo Personalizado",
+      "descripcion": "Diseño UI/UX exclusivo a medida sin plantillas para proyectos con identidad única.",
+      "precio": 650000,
+      "dias": 15,
+      "paginas": 4,
+      "ideal": [
+        "Startups",
+        "Marcas de Autor",
+        "Proyectos especiales"
+      ],
+      "incluye": [
+        "Hasta 4 Secciones a medida",
+        "Diseño UI/UX Exclusivo",
+        "Maquetado sin plantillas",
+        "Animaciones avanzadas",
+        "Soporte y asesoría dedicada"
+      ],
+      "ejemplos": []
+    },
+    "ecommerce": {
+      "id": "ecommerce",
+      "nombre": "E-commerce Pro",
+      "descripcion": "Tienda online autogestionable con WordPress + WooCommerce, catálogo, carrito y pagos.",
+      "precio": 800000,
+      "dias": 21,
+      "paginas": 6,
+      "ideal": [
+        "Comercios locales",
+        "Distribuidores",
+        "Marcas de productos"
+      ],
+      "incluye": [
+        "Panel autogestionable",
+        "Integración de pasarelas de pago",
+        "Configuración de envíos",
+        "Carrito de compras",
+        "Diseño Mobile First"
+      ],
+      "ejemplos": []
+    }
   },
   "extras": {
     "administrador": {
@@ -79,6 +100,16 @@
       "nombre": "Multidioma",
       "precio": 90000,
       "dias": 2
+    },
+    "agente_ia": {
+      "nombre": "Agente de IA para ventas",
+      "precio": 150000,
+      "dias": 5
+    },
+    "carga_productos": {
+      "nombre": "Carga inicial (hasta 20 prods)",
+      "precio": 90000,
+      "dias": 3
     }
   },
   "infraestructura": {
