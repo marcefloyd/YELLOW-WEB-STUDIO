@@ -457,20 +457,3 @@ function enviarWhatsApp() {
   const linkWa = `https://api.whatsapp.com/send?phone=${numTel}&text=${encodeURIComponent(mensaje)}`;
   window.open(linkWa, "_blank");
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const chatToggle = document.getElementById('chatbot-toggle');
-    const chatWindow = document.getElementById('chatbot-window');
-    const chatClose = document.getElementById('chatbot-close');
-
-    // Abrir chat
-    chatToggle.addEventListener('click', () => {
-        chatWindow.classList.remove('d-none');
-        chatToggle.classList.add('d-none');
-    });
-
-    // Cerrar chat
-    chatClose.addEventListener('click', () => {
-        chatWindow.classList.add('d-none');
-        chatToggle.classList.remove('d-none');
-    });
-}); 
