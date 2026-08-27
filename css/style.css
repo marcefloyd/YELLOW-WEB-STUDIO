@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --yellow: #FFC107;
+  --black: #0D0D0D;
+  --gray: #9E9E9E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*======================================================
+FONDO SPOTLIGHT SIMÉTRICO Y ESMERILADO (DEFINITIVO)
+======================================================*/
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0d0d0d !important;
+  position: relative;
+  color: white !important;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: -1;
+  background-image: 
+    radial-gradient(circle at 50% 35%, rgba(255, 193, 7, 0.22) 0%, rgba(13, 13, 13, 0.95) 65%);
+  filter: blur(85px);
+  transform: scale(1.1);
+  pointer-events: none;
+}
+.navbar {
+  padding: 10px 0;
+  background: rgba(0, 0, 0, .85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 193, 7, 0.1);
+}
+
+.navbar-brand img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+.nav-link {
+  color: white;
+  margin-left: 25px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--yellow);
+}
+
+/*==========================
+LOGO
+==========================*/
+.logo {
+  text-decoration: none;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  color: var(--yellow);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+  transition: .3s;
+}
+
+.logo-subtitle {
+  margin-top: 3px;
+  color: var(--yellow);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: 6px;
+  line-height: 1;
+}
+
+/*==========================
+HERO
+==========================*/
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.hero-text {
+  font-size: 1.2rem;
+  color: #cfcfcf;
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-yellow {
+  background: var(--yellow);
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: black;
+  margin-right: 15px;
+  transition: .3s;
+}
+
+.btn-yellow:hover {
+  transform: translateY(-4px);
+  background: #ffd54f;
+}
+
+.btn-outline-yellow {
+  border: 2px solid var(--yellow);
+  padding: 15px 35px;
+  border-radius: 50px;
+  color: var(--yellow);
+  transition: .3s;
+}
+
+.btn-outline-yellow:hover {
+  background: var(--yellow);
+  color: black;
+}
+
+/*======================================================
+BROWSER WINDOW (CON EFECTO VIDRIO ESMERILADO)
+======================================================*/
+.browser-window {
+  background: rgba(24, 24, 24, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+}
+
+.browser-header {
+  height: 48px;
+  background: rgba(34, 34, 34, 0.8);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.browser-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.browser-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.browser-url {
+  margin: auto;
+  color: #999;
+  font-size: .85rem;
+  letter-spacing: 1px;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/*======================================================
+SECTION TITLES & SERVICES
+======================================================*/
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.section-subtitle {
+  color: #bdbdbd;
+  max-width: 650px;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+.services {
+  padding: 120px 0;
+}
+
+/*======================================================
+WINDOW CARD (TARJETAS CON CRISTAL ESMERILADO)
+======================================================*/
+.window-card {
+  background: rgba(24, 24, 24, 0.60);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 193, 7, 0.15);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: .35s;
+  height: 100%;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .35);
+}
+
+.window-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--yellow);
+  box-shadow: 0 20px 45px rgba(255, 193, 7, .25);
+  background: rgba(28, 28, 28, 0.75);
+}
+
+.window-header {
+  height: 45px;
+  background: rgba(35, 35, 35, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-header span {
+  width: 11px;
+  height: 11px;
+  background: var(--yellow);
+  border-radius: 50%;
+}
+
+.window-body {
+  padding: 35px;
+}
+
+.window-body h3 {
+  color: var(--yellow);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.window-body p {
+  color: #c5c5c5;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/*======================================================
+MEDIA QUERIES
+======================================================*/
+@media(max-width: 992px) {
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 2.7rem;
+  }
+
+  .hero-text {
+    margin: 30px auto;
+  }
+
+  .hero {
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .browser-window {
+    margin-top: 50px;
+  }
+
+  .carousel-inner img {
+    height: 240px;
+  }
+
+  .mockup {
+    margin-top: 60px;
+    width: 100%;
+    height: 250px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .window-body {
+    padding: 25px;
+  }
+}
+
+/*==========================
+FOOTER HOVER
+==========================*/
+.hover-yellow {
+  transition: color 0.2s ease-in-out;
+}
+
+.hover-yellow:hover {
+  color: #FFC107 !important;
+}

@@ -1,0 +1,146 @@
+{
+  "configuracion": {
+    "empresa": "Yellow Web Studio",
+    "moneda": "ARS",
+    "actualizacion": "2026-08"
+  },
+  "servicios": {
+    "landing": {
+      "id": "landing",
+      "nombre": "Landing Page",
+      "descripcion": "Una página moderna para mostrar tu negocio o servicio.",
+      "precio": 280000,
+      "dias": 7,
+      "paginas": 1,
+      "ideal": ["Profesionales", "Emprendedores", "Pequeños negocios"],
+      "incluye": ["Diseño Responsive", "Formulario", "WhatsApp", "SEO Básico"],
+      "ejemplos": []
+    },
+    "institucional": {
+      "id": "institucional",
+      "nombre": "Sitio Institucional",
+      "descripcion": "Presentación profesional de empresas y organizaciones.",
+      "precio": 420000,
+      "dias": 15,
+      "paginas": 5,
+      "ideal": ["Empresas", "Estudios", "Negocios"],
+      "incluye": ["Diseño Responsive", "Formulario", "Mapa", "SEO Básico"],
+      "ejemplos": []
+    },
+    "personalizado": {
+  "id": "personalizado",
+  "nombre": "Desarrollo Personalizado",
+  "descripcion": "Diseño UI/UX exclusivo a medida sin plantillas para proyectos con identidad única.",
+  "precio": 650000,
+  "dias": 15,
+  "paginas": 4,
+  "ideal": [
+    "Startups",
+    "Marcas de Autor",
+    "Proyectos especiales"
+  ],
+  "incluye": [
+    "Hasta 4 Secciones a medida",
+    "Diseño UI/UX Exclusivo",
+    "Maquetado sin plantillas",
+    "Animaciones avanzadas",
+    "Soporte y asesoría dedicada"
+  ],
+  "ejemplos": []
+}
+  },
+  "extras": {
+    "administrador": {
+      "nombre": "Panel de Administración",
+      "precio": 90000,
+      "dias": 3
+    },
+    "blog": {
+      "nombre": "Blog",
+      "precio": 70000,
+      "dias": 2
+    },
+    "catalogo": {
+      "nombre": "Catálogo",
+      "precio": 90000,
+      "dias": 3
+    },
+    "turnos": {
+      "nombre": "Sistema de Turnos",
+      "precio": 120000,
+      "dias": 5
+    },
+    "login": {
+      "nombre": "Usuarios y Login",
+      "precio": 140000,
+      "dias": 5
+    },
+    "multidioma": {
+      "nombre": "Multidioma",
+      "precio": 90000,
+      "dias": 2
+    }
+  },
+  "infraestructura": {
+    "dominio": {
+      "nombre": "Dominio",
+      "precio": 25000
+    },
+    "hosting": {
+      "nombre": "Hosting",
+      "precio": 50000
+    },
+    "correo": {
+      "nombre": "Correo Corporativo",
+      "precio": 25000
+    }
+  },
+  "seguridad": {
+    "basica": {
+      "nombre": "Seguridad Básica",
+      "precio": 0,
+      "incluye": []
+    },
+    "pro": {
+      "nombre": "Pack Web Pro Segura",
+      "precio": 120000,
+      "dias": 1,
+      "incluye": [
+        "Cabeceras HTTP",
+        "Cloudflare Turnstile",
+        "Protección Anti Spam",
+        "SSL",
+        "Repositorio Privado",
+        "Backups",
+        "Informe Security Headers"
+      ]
+    }
+  },
+  "mantenimiento": {
+    "ninguno": {
+      "precio": 0
+    },
+    "mensual": {
+      "precio": 30000,
+      "incluye": [
+        "Monitoreo",
+        "Control SSL",
+        "Control Formularios",
+        "1 cambio mensual"
+      ]
+    }
+  },
+  "reuniones": {
+    "online": {
+      "precio": 0
+    },
+    "presencial": {
+      "precio": 30000,
+      "descripcion": "Se descuenta del proyecto si contratás el servicio."
+    }
+  },
+  "descuentos": {
+    "transferencia": 10,
+    "cliente_recurrente": 15
+  }
+}

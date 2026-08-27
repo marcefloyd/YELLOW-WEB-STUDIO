@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --yellow: #FFC107;
+  --black: #0D0D0D;
+  --card-bg: #171717;
+  --gray: #A8A8A8;
+}
+
+body {
+  background: var(--black);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+/* Header Superior */
+.top-bar {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-mini {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--yellow);
+  letter-spacing: 1px;
+}
+
+.back-btn {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: var(--yellow);
+}
+
+/* Hero & Titulares */
+.hero-budget {
+  padding: 50px 0 30px 0;
+  text-align: center;
+}
+
+.hero-budget h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero-budget p {
+  color: var(--gray);
+  font-size: 1.15rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Sección Principal */
+.budget {
+  padding-bottom: 80px;
+}
+
+/* Grilla de Tarjetas */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 0; /* Asegura alineación perfecta con la columna derecha */
+}
+
+.service-card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.service-card:hover {
+  border-color: var(--yellow);
+  transform: translateY(-6px);
+}
+
+.service-card.selected {
+  border-color: var(--yellow);
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(255, 193, 7, 0.25);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  color: var(--yellow);
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: var(--yellow);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  color: #bfbfbf;
+}
+
+.service-features li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 25px;
+}
+
+.service-footer small {
+  display: block;
+  color: #888;
+}
+
+.service-footer span {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.btn-select {
+  background: var(--yellow);
+  color: black;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.btn-select:hover {
+  transform: scale(1.03);
+}
+
+.selected-btn {
+  background: #25c25a;
+  color: white;
+  cursor: pointer;
+}
+
+/* Panel Lateral Derecho (Sticky) */
+.summary {
+  background: #161616;
+  border: 2px solid rgba(255, 193, 7, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  position: sticky;
+  top: 100px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.summary-header {
+  text-align: center;
+}
+
+.summary-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.summary-dots span {
+  width: 10px;
+  height: 10px;
+  background: var(--yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,193,7,0.5);
+}
+
+.summary-header h5 {
+  color: var(--yellow);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.summary-header small {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.progress {
+  height: 10px;
+  margin-top: 15px;
+  background: #2b2b2b;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 20%;
+  background: linear-gradient(90deg, #FFC107, #FFE066);
+  transition: width 0.4s ease;
+}
+
+.summary hr {
+  border-color: rgba(255, 193, 7, 0.15);
+  margin: 25px 0;
+}
+
+.summary h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: white;
+}
+
+#summaryContent {
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+.summary ul {
+  padding-left: 18px;
+  margin-top: 15px;
+}
+/* Ajuste para que la 3ra tarjeta ocupe el ancho completo si queda sola */
+.service-grid .service-card:last-child:nth-child(odd) {
+  grid-column: span 2;
+}
+
+/* En pantallas chicas (móviles) vuelve a 1 sola columna */
+@media (max-width: 768px) {
+  .service-grid .service-card:last-child:nth-child(odd) {
+    grid-column: span 1;
+  }
+}
+/* Oculto por defecto en Pantallas Grandes (PC/Laptop) */
+.sticky-cart-bar {
+  display: none;
+}
+
+/* Solo visible en dispositivos móviles */
+@media (max-width: 768px) {
+  .sticky-cart-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #121212; /* Fondo oscuro elegante */
+    border-top: 2px solid #ffd700; /* Borde dorado destacado */
+    padding: 12px 18px;
+    z-index: 9999;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cart-icon {
+    font-size: 1.4rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  #mobile-cart-count {
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    position: absolute;
+    top: -6px;
+    right: -10px;
+  }
+
+  .cart-total {
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  .cart-btn {
+    background-color: #ffd700;
+    color: #000000;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .cart-btn:active {
+    transform: scale(0.95);
+    background-color: #e6c200;
+  }
+}
