@@ -89,3 +89,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnCiber = document.getElementById('btn-ciber');
+
+    if (btnCiber) {
+        btnCiber.addEventListener('click', () => {
+            // Cambia el estilo y el texto del botón al hacer clic
+            btnCiber.classList.remove('btn-outline-warning', 'text-white');
+            btnCiber.classList.add('btn-success', 'text-white');
+            btnCiber.textContent = '🚀 ¡Próximamente!';
+
+            // Después de 3.5 segundos vuelve a su estado normal
+            setTimeout(() => {
+                btnCiber.classList.remove('btn-success');
+                btnCiber.classList.add('btn-outline-warning', 'text-white');
+                btnCiber.textContent = '🛡️ Ciberseguridad';
+            }, 3500);
+        });
+    }
+});
