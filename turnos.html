@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Sistema de Turnos | Yellow Web Studio</title>
+    <!-- Bootstrap CSS 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos base oscuros de Yellow Studio */
+        body {
+            background-color: #121212;
+            color: #f8f9fa;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding-bottom: 100px;
+        }
+
+        /* Header */
+        .demo-header {
+            background-color: #000;
+            border-bottom: 1px solid #333;
+            padding: 1rem 0;
+        }
+
+        /* Panel de Demo Oscuro */
+        .demo-panel {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Simulación de calendario */
+        .calendar-day {
+            background-color: #212529;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .calendar-day:hover, .calendar-day.active {
+            background-color: #ffc107;
+            color: #000;
+            font-weight: bold;
+            border-color: #ffc107;
+        }
+
+        /* Botones de estilo de color para la demo */
+        .style-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .style-btn:hover { transform: translateY(-2px); }
+        
+        #btn-yellow { background-color: #ffc107; color: #000; }
+        #btn-dark { background-color: #343a40; color: #fff; border: 1px solid #ffc107; }
+        #btn-minimal { background-color: transparent; color: #ffc107; border: 2px solid #ffc107; }
+
+        /* Barra de precio fija inferior */
+        .price-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            border-top: 2px solid #ffc107;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        }
+        .price-value {
+            color: #ffc107;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Texto de explicación */
+        .info-section h3 { color: #ffc107; margin-top: 1.5rem; }
+        .info-icon { color: #ffc107; font-size: 1.2rem; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de navegación -->
+    <header class="demo-header sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand fw-bold fs-4 text-warning text-decoration-none" href="index.html">
+                :// Yellow Web Studio
+            </a>
+            <div>
+                <a href="presupuesto.html" class="btn btn-outline-light rounded-pill px-3 me-2">← Volver a la web</a>
+                <a href="presupuesto.html" class="btn btn-warning rounded-pill px-4 fw-bold">Armar presupuesto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <div class="row mt-5">
+            
+            <!-- 2. Área de demostración interactiva con Selector de Vista -->
+            <div class="col-lg-8">
+                <div class="demo-panel">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <h2 class="fs-4 mb-0 text-warning" id="demo-titulo">📱 Demo: Vista del Cliente</h2>
+                        <div class="btn-group bg-black p-1 rounded-pill border border-secondary" role="group">
+                            <button type="button" id="btn-vista-cliente" class="btn btn-sm btn-warning rounded-pill px-3 fw-bold">Vista Cliente</button>
+                            <button type="button" id="btn-vista-dueno" class="btn btn-sm text-white rounded-pill px-3">Vista Dueño</button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted small mb-4" id="demo-subtitulo">Así es como tus clientes eligen el servicio y reservan su turno fácilmente desde su celular.</p>
+                    
+                    <hr class="border-secondary my-4">
+
+                    <!-- VIEWPORT INTERACTIVO -->
+                    <div id="demo-viewport">
+                        <!-- VISTA CLIENTE -->
+                        <div id="vista-cliente-content">
+                            <h5 class="mb-3 text-white">1. Seleccioná un horario disponible</h5>
+                            <div class="row g-2 mb-4">
+                                <div class="col-6 col-md-4">
+                                    <div class="p-2 border border-secondary rounded text-center bg-black text-white">10:00 AM</div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="p-2 border border-warning rounded text-center bg-warning text-dark fw-bold">11:30 AM (Seleccionado)</div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="p-2 border border-secondary rounded text-center bg-black text-secondary opacity-50">14:00 PM (Ocupado)</div>
+                                </div>
+                            </div>
+                            <div class="bg-black p-3 rounded-3 border border-secondary">
+                                <h6 class="text-warning mb-2">2. Tus datos para confirmar</h6>
+                                <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" value="Carlos Díaz" readonly>
+                                <button class="btn btn-success btn-sm w-100 fw-bold">
+                                    <i class="bi bi-whatsapp"></i> Confirmar y Enviar Turno por WhatsApp
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- VISTA DUEÑO (Oculta por defecto) -->
+                        <div id="vista-dueno-content" class="d-none">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5 class="mb-3 text-white">Seleccionar Fecha</h5>
+                                    <div class="d-grid gap-2">
+                                        <div class="calendar-day active">Jueves 15 (Hoy)</div>
+                                        <div class="calendar-day">Viernes 16</div>
+                                        <div class="calendar-day">Sábado 17</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 mt-md-0 mt-4">
+                                    <h5 class="mb-3 text-white">Turnos para Jueves 15</h5>
+                                    <ul class="list-group list-group-flush bg-transparent gap-2">
+                                        <li class="list-group-item bg-black text-white d-flex justify-content-between align-items-center border border-secondary rounded-3 p-3">
+                                            <div>
+                                                <strong>11:30 AM</strong> - Carlos Díaz
+                                                <small class="d-block text-secondary">Revisión Técnica</small>
+                                            </div>
+                                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">Pendiente</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. Explicación resumida -->
+            <div class="col-lg-4 mt-lg-0 mt-5 info-section">
+                <div class="bg-black border border-secondary p-4 rounded-4 h-100 shadow-sm">
+                    <h3 class="mb-3 fs-5">¿Cómo funciona tu sistema de turnos Yellow?</h3>
+                    
+                    <p class="small text-secondary"><span class="info-icon">✅</span> <strong>Vista Cliente:</strong> Tus clientes entran a tu web, eligen un servicio, fecha y hora disponible y confirman el turno.</p>
+                    <p class="small text-secondary"><span class="info-icon">✅</span> <strong>Notificación a WhatsApp:</strong> Automáticamente se genera un mensaje predefinido que el cliente envía a tu WhatsApp con el detalle de la reserva.</p>
+                    <p class="small text-secondary"><span class="info-icon">✅</span> <strong>Tu Panel Administrador:</strong> Desde tu celular o PC, accedes a tu panel (como la demo) para ver, confirmar o cancelar las citas.</p>
+                    <p class="small text-secondary"><span class="info-icon">✅</span> <strong>Personalización de Estilo:</strong> Adaptamos el diseño de la interfaz de turnos a la identidad visual de tu marca.</p>
+
+                    <h4 class="mt-4 text-warning fs-6">¡Probá los estilos!</h4>
+                    <div class="d-flex mt-2 flex-wrap gap-2">
+                        <button id="btn-yellow" class="style-btn btn btn-sm btn-warning">Yellow Style</button>
+                        <button id="btn-dark" class="style-btn btn btn-sm btn-dark border border-secondary text-white">Dark Modern</button>
+                        <button id="btn-minimal" class="style-btn btn btn-sm btn-outline-warning">Minimal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Barra de precio fija inferior -->
+    <footer class="price-bar">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h4 class="mb-0 text-white fs-6">Servicio: Sistema de Turnos a Medida</h4>
+                <span class="price-value">+$120.000 ARS</span>
+                <small class="text-muted d-block" style="font-size: 0.75rem;">Pago único de instalación + configuración</small>
+            </div>
+            <a href="presupuesto.html" class="btn btn-warning btn-lg rounded-pill px-5 fw-bold fs-6 shadow-lg text-dark">
+                🛒 Agregar al Presupuesto
+            </a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Lógica para cambiar estilos de color
+        const demoPanel = document.querySelector('.demo-panel');
+        
+        document.getElementById('btn-yellow').addEventListener('click', () => {
+            demoPanel.style.backgroundColor = '#1a1a1a';
+            demoPanel.style.border = '1px solid #333';
+        });
+        
+        document.getElementById('btn-dark').addEventListener('click', () => {
+            demoPanel.style.backgroundColor = '#212529';
+            demoPanel.style.border = '1px solid #6c757d';
+        });
+        
+        document.getElementById('btn-minimal').addEventListener('click', () => {
+            demoPanel.style.backgroundColor = '#f8f9fa';
+            demoPanel.style.border = '1px solid #ccc';
+        });
+
+        // Lógica para alternar entre Vista Cliente y Vista Dueño
+        const btnCliente = document.getElementById('btn-vista-cliente');
+        const btnDueno = document.getElementById('btn-vista-dueno');
+        const vistaClienteDiv = document.getElementById('vista-cliente-content');
+        const vistaDuenoDiv = document.getElementById('vista-dueno-content');
+        const demoTitulo = document.getElementById('demo-titulo');
+        const demoSubtitulo = document.getElementById('demo-subtitulo');
+
+        btnCliente.addEventListener('click', () => {
+            btnCliente.className = "btn btn-sm btn-warning rounded-pill px-3 fw-bold";
+            btnDueno.className = "btn btn-sm text-white rounded-pill px-3";
+            vistaClienteDiv.classList.remove('d-none');
+            vistaDuenoDiv.classList.add('d-none');
+            demoTitulo.textContent = "📱 Demo: Vista del Cliente";
+            demoSubtitulo.textContent = "Así es como tus clientes eligen el servicio y reservan su turno fácilmente desde su celular.";
+        });
+
+        btnDueno.addEventListener('click', () => {
+            btnDueno.className = "btn btn-sm btn-warning rounded-pill px-3 fw-bold";
+            btnCliente.className = "btn btn-sm text-white rounded-pill px-3";
+            vistaDuenoDiv.classList.remove('d-none');
+            vistaClienteDiv.classList.add('d-none');
+            demoTitulo.textContent = "🖥️ Demo: Panel de Control (Vista Dueño)";
+            demoSubtitulo.textContent = "Simulamos un panel administrativo para que veas y gestiones los turnos de tus clientes.";
+        });
+    </script>
+</body>
+</html>

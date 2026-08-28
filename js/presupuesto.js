@@ -112,11 +112,24 @@ function cargarPaso2() {
     const yaAgregado = presupuesto.extras.some(e => e.clave === clave);
     if (yaAgregado) card.classList.add("selected");
 
+    // Botón de Ver Ejemplo rediseñado en bloque o estilo link superior
+    let demoButtonHTML = '';
+    if (clave === 'turnos') {
+      demoButtonHTML = `
+        <a href="turnos.html" class="btn btn-sm btn-outline-warning w-100 rounded-pill mb-2 py-2 fw-semibold text-decoration-none" onclick="event.stopPropagation();">
+          👁️ Ver Ejemplo Interactivo
+        </a>
+      `;
+    }
+
     card.innerHTML = `
       <div class="service-icon"><i class="bi bi-plus-circle"></i></div>
       <h3>${extra.nombre}</h3>
       <p>${explicaciones[clave] || 'Funcionalidad avanzada para tu sitio.'}</p>
-      <div class="service-footer">
+      
+      ${demoButtonHTML}
+
+      <div class="service-footer mt-3">
         <div>
           <small>Costo adicional</small>
           <span>+$${extra.precio.toLocaleString("es-AR")}</span>
@@ -395,7 +408,6 @@ function actualizarWidgetMovil() {
 
   if (!contadorElem || !totalElem) return;
 
-  // Calculamos la cantidad total de ítems seleccionados
   let cantidadItems = 0;
   if (presupuesto.servicio) cantidadItems++;
   cantidadItems += presupuesto.extras.length;
@@ -414,7 +426,6 @@ function inicializarEventosMovil() {
   if (!stickyBar) return;
 
   stickyBar.addEventListener("click", () => {
-    // Si tu caja lateral de resumen tiene otro ID, cambialo acá (ej: "summaryContent" o "resumenBox")
     const resumenBox = document.getElementById("summaryContent") || document.querySelector(".summary-box");
     if (resumenBox) {
       resumenBox.scrollIntoView({ behavior: "smooth" });
