@@ -8,16 +8,16 @@ export default async function handler(req, res) {
         const apiKey = process.env.GEMINI_API_KEY;
 
         if (!apiKey) {
-            return res.status(200).json({ reply: 'DEBUG: Falta la variable GEMINI_API_KEY en Vercel.' });
+            return res.status(200).json({ reply: 'Error: Falta la API Key en Vercel.' });
         }
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Probamos con el modelo estándar actual de la API
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 contents: [{
-                    role: "user",
-                    parts: [{ text: `Sos el asistente de Yellow Web Studio. Respondé corto: ${message}` }]
+                    parts: [{ text: message }]
                 }]
             })
         });
@@ -25,13 +25,13 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         if (!response.ok) {
-            return res.status(200).json({ reply: `DEBUG Google Error: ${data.error?.message || JSON.stringify(data)}` });
+            return res.status(200).json({ reply: `Google API Error: ${data.error?.message || 'Desconocido'}` });
         }
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sin respuesta de Gemini';
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sin respuesta del modelo.';
         return res.status(200).json({ reply });
 
     } catch (error) {
-        return res.status(200).json({ reply: `DEBUG Catch Error: ${error.message}` });
+        return res.status(200).json({ reply: `Error interno: ${error.message}` });
     }
 }
