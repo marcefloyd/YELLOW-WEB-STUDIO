@@ -1,3 +1,7 @@
+import OpenAI from "openai";
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Método no permitido' });
@@ -5,18 +9,14 @@ export default async function handler(req, res) {
 
     try {
         const { message, currentUrl } = req.body;
-        const apiKey = process.env.GEMINI_API_KEY;
+        const geminiApiKey = process.env.GEMINI_API_KEY;
+        const openAiApiKey = process.env.OPENAI_API_KEY;
 
-        if (!apiKey) {
-            return res.status(500).json({ message: 'Falta configurar la API Key en Vercel.' });
+        if (!geminiApiKey || !openAiApiKey) {
+            return res.status(500).json({ message: 'Falta configurar las API Keys (Gemini y OpenAI) en Vercel.' });
         }
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: `
+        const systemPrompt = `
 Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de diseño y desarrollo web profesional ubicado en Buenos Aires, Argentina. 
 
 CONTEXTO ACTUAL:
@@ -52,27 +52,52 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
    - Podés usar la estética visual de la web (moderna, oscura con detalles amarillos) como referencia, pero NUNCA reveles detalles de código, arquitectura o cómo está hecha técnicamente la página.
 
 7. CIERRE OBLIGATORIO:
-   - Terminá siempre ofreciendo contacto directo por WhatsAppyellow 5491164639977 o derivando al cotizador según corresponda.
+   - Terminá siempre ofreciendo contacto directo por WhatsApp 5491164639977 o derivando al cotizador según corresponda.
 
 8. BREVEDAD OBLIGATORIA: 
    - Sé conciso y directo. Respondé en un máximo de 2 o 3 oraciones cortas.
+`;
 
-   Mensaje del cliente: ${message}
-                    ` }]
-                }]
-            })
-        });
+        // Sorteo aleatorio: 50% probabilidad para cada plataforma
+        const usarOpenAI = Math.random() < 0.5;
+        let reply = '';
 
-        const data = await response.json();
+        if (usarOpenAI) {
+            // Llamada a OpenAI (GPT-4o-mini)
+            const completion = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: message }
+                ],
+                max_tokens: 150,
+            });
+            reply = completion.choices[0].message.content;
+        } else {
+            // Llamada a Gemini (mantenemos tu lógica original con fetch)
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
+                    }]
+                })
+            });
 
-        if (!response.ok) {
-            return res.status(500).json({ message: data.error?.message || 'Error al conectar con Gemini' });
+            const data = await response.json();
+
+            if (!response.ok) {
+                return res.status(500).json({ message: data.error?.message || 'Error al conectar con Gemini' });
+            }
+
+            reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '¡Hola! ¿En qué puedo ayudarte hoy con tu proyecto?';
         }
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '¡Hola! ¿En qué puedo ayudarte hoy con tu proyecto?';
         return res.status(200).json({ reply });
 
     } catch (error) {
+        console.error("Error en el backend:", error);
         return res.status(500).json({ message: 'Error interno en el servidor.' });
     }
 }

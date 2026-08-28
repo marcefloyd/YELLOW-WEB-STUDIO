@@ -2,5 +2,8 @@
   "name": "yellow-web-studio",
   "version": "1.0.0",
   "type": "module",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "openai": "^7.8.0"
+  }
 }
