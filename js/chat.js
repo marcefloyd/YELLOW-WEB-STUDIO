@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chatbot-input');
     const chatMessages = document.getElementById('chatbot-messages');
 
-    // 1. Abrir y cerrar ventana
+    // 1. Abrir y cerrar ventana del chat
     if (chatToggle && chatWindow && chatClose) {
         chatToggle.addEventListener('click', () => {
             chatWindow.classList.remove('d-none');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Enviar y recibir mensajes
+    // 2. Enviar y recibir mensajes del Chatbot
     if (chatForm && chatInput && chatMessages) {
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Mostrar "Escribiendo..."
+            // Mostrar indicador "Escribiendo..."
             const typingId = 'typing-' + Date.now();
             chatMessages.innerHTML += `
                 <div id="${typingId}" class="mb-3">
@@ -50,8 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                // Detecta automáticamente la página actual (ej: index.html, presupuesto.html, etc.)
-                const currentUrl = window.location.pathname.split('/').pop() || 'index.html';
+                // Obtener nombre de la página de forma segura
+                let pageName = window.location.pathname.split('/').pop();
+                if (!pageName || pageName === '') {
+                    pageName = 'index.html';
+                }
 
                 const response = await fetch('/api/chat', {
                     method: 'POST',
@@ -61,11 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify({ 
                         message: userMessage, 
-                        currentUrl: currentUrl 
+                        currentUrl: pageName 
                     })
                 });
 
-                const data = await response.json();
+                // Controlar si la respuesta del servidor es JSON válido
+                const contentType = response.headers.get("content-type");
+                let data = {};
+                if (contentType && contentType.includes("application/json")) {
+                    data = await response.json();
+                } else {
+                    throw new Error('La respuesta del servidor no es JSON válido.');
+                }
+
                 document.getElementById(typingId)?.remove();
 
                 if (response.ok && data.reply) {
@@ -82,26 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 document.getElementById(typingId)?.remove();
                 chatMessages.innerHTML += `
-                    <div class="mb-3 text-danger small">Error: No se pudo conectar con YellowBot.</div>
+                    <div class="mb-3 text-danger small">Error: No se pudo conectar con YellowBot (${error.message}).</div>
                 `;
             }
             chatMessages.scrollTop = chatMessages.scrollHeight;
         });
     }
-});
 
-
-document.addEventListener('DOMContentLoaded', () => {
+    // 3. Funcionalidad del botón de Ciberseguridad (exclusivo del index)
     const btnCiber = document.getElementById('btn-ciber');
-
     if (btnCiber) {
         btnCiber.addEventListener('click', () => {
-            // Cambia el estilo y el texto del botón al hacer clic
             btnCiber.classList.remove('btn-outline-warning', 'text-white');
             btnCiber.classList.add('btn-success', 'text-white');
             btnCiber.textContent = '🚀 ¡Próximamente!';
 
-            // Después de 3.5 segundos vuelve a su estado normal
             setTimeout(() => {
                 btnCiber.classList.remove('btn-success');
                 btnCiber.classList.add('btn-outline-warning', 'text-white');
