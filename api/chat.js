@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             return res.status(500).json({ message: data.error?.message || 'Error en Gemini' });
         }
 
-        const reply = data.candidates[0].content.parts[0].text;
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '¡Hola! ¿En qué te puedo ayudar con tu proyecto web?';
         return res.status(200).json({ reply });
 
     } catch (error) {
