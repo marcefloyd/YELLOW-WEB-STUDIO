@@ -30,7 +30,7 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
    - Si el usuario quiere cotizar, calcular un valor o ver precios, indicale exactamente: "Podés hacer clic en el botón 'Armá tu presupuesto' en la página de inicio o ingresar a 'Cotizador Online' desde el menú de navegación superior."
 
 3. CERO COMPETENCIA:
-   - NUNCA menciones plataformas como Tiendanube, Empretienda, WordPress, Treinta o WatsForm.
+   - NUNCA menciones plataformas como Tiendanube, Empretienda, WordPress o WatsForm.
 
 4. PRECIOS Y PAGOS EN ARGENTINA:
    - Manejá estimaciones lógicas para Argentina en Pesos (ARS), aclarando que son valores orientativos.
@@ -51,51 +51,57 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
 `;
 
         let reply = '';
+        const geminiModels = ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-pro'];
+        const groqModels = ['llama-3.3-70b-versatile', 'llama3-70b-8192', 'llama3-8b-8192', 'mixtral-8x7b-32768'];
 
-        // Intentamos primero con Gemini directo que sabemos que funciona bien en tu panel
         if (geminiApiKey) {
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
-                        }]
-                    })
-                });
+            for (const model of geminiModels) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
+                            }]
+                        })
+                    });
 
-                const data = await response.json();
-                if (response.ok) {
-                    reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                } else {
-                    console.error("Error en Gemini:", data);
+                    const data = await response.json();
+                    if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        reply = data.candidates[0].content.parts[0].text;
+                        break;
+                    }
+                } catch (e) {
+                    // Intenta con el siguiente modelo de Gemini
                 }
-            } catch (geminiError) {
-                console.error("Excepción en Gemini:", geminiError);
             }
         }
 
-        // Si Gemini falló, intentamos con Groq usando un modelo estándar actual
         if (!reply && groqApiKey) {
-            try {
-                const groq = new OpenAI({
-                    apiKey: groqApiKey,
-                    baseURL: "https://api.groq.com/openai/v1"
-                });
+            const groq = new OpenAI({
+                apiKey: groqApiKey,
+                baseURL: "https://api.groq.com/openai/v1"
+            });
 
-                const completion = await groq.chat.completions.create({
-                    model: "llama3-70b-8192",
-                    messages: [
-                        { role: "system", content: systemPrompt },
-                        { role: "user", content: message }
-                    ],
-                    temperature: 0.7,
-                });
+            for (const model of groqModels) {
+                try {
+                    const completion = await groq.chat.completions.create({
+                        model: model,
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: message }
+                        ],
+                        temperature: 0.7,
+                    });
 
-                reply = completion.choices[0]?.message?.content;
-            } catch (groqError) {
-                console.warn("Groq también falló:", groqError);
+                    reply = completion.choices[0]?.message?.content;
+                    if (reply) {
+                        break;
+                    }
+                } catch (e) {
+                    // Intenta con el siguiente modelo de Groq
+                }
             }
         }
 
