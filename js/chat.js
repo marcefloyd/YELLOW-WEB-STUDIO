@@ -116,3 +116,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// 2. Enviar y recibir mensajes del Chatbot
+    if (chatForm && chatInput && chatMessages) {
+        const handleSendMessage = async (e) => {
+            e.preventDefault();
+            
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Mostrar mensaje del usuario
+            chatMessages.innerHTML += `
+                <div class="mb-3 text-end">
+                    <div class="bg-warning text-dark p-2 rounded-3 border border-warning d-inline-block shadow-sm text-start" style="max-width: 85%;">
+                        ${userMessage}
+                    </div>
+                </div>
+            `;
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Mostrar indicador "Escribiendo..."
+            const typingId = 'typing-' + Date.now();
+            chatMessages.innerHTML += `
+                <div id="${typingId}" class="mb-3">
+                    <div class="bg-black text-secondary p-2 rounded-3 border border-secondary d-inline-block shadow-sm">
+                        <em>Escribiendo...</em>
+                    </div>
+                </div>
+            `;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                let pageName = window.location.pathname.split('/').pop();
+                if (!pageName || pageName === '') {
+                    pageName = 'index.html';
+                }
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        message: userMessage, 
+                        currentUrl: pageName 
+                    })
+                });
+
+                const contentType = response.headers.get("content-type");
+                let data = {};
+                if (contentType && contentType.includes("application/json")) {
+                    data = await response.json();
+                } else {
+                    throw new Error('La respuesta del servidor no es JSON válido.');
+                }
+
+                document.getElementById(typingId)?.remove();
+
+                if (response.ok && data.reply) {
+                    chatMessages.innerHTML += `
+                        <div class="mb-3">
+                            <div class="bg-black text-white p-2 rounded-3 border border-secondary d-inline-block shadow-sm" style="max-width: 90%;">
+                                ${data.reply}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    throw new Error(data.message || 'Error en la respuesta del servidor');
+                }
+            } catch (error) {
+                document.getElementById(typingId)?.remove();
+                chatMessages.innerHTML += `
+                    <div class="mb-3 text-danger small">Error: No se pudo conectar con YellowBot (${error.message}).</div>
+                `;
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        // Escucha tanto el submit del formulario como el clic directo en el botón
+        chatForm.addEventListener('submit', handleSendMessage);
+        const submitBtn = document.getElementById('chatbot-submit');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', handleSendMessage);
+        }
+    }
