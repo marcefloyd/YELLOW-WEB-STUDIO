@@ -58,12 +58,10 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
    - Sé conciso y directo. Respondé en un máximo de 2 o 3 oraciones cortas.
 `;
 
-        // Sorteo aleatorio: 50% probabilidad para cada plataforma
         const usarOpenAI = Math.random() < 0.5;
         let reply = '';
 
         if (usarOpenAI) {
-            // Llamada a OpenAI (GPT-4o-mini)
             const completion = await openai.chat.completions.create({
                 model: "gpt-4o-mini",
                 messages: [
@@ -74,8 +72,8 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
             });
             reply = completion.choices[0].message.content;
         } else {
-            // Llamada a Gemini (mantenemos tu lógica original con fetch)
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+            // Actualizado al modelo vigente gemini-3.6-flash
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${geminiApiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
