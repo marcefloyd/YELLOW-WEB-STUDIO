@@ -50,34 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                // Enviar a tu Vercel
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userMessage })
-                });
+    // Usar ruta relativa limpia para Vercel
+    const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({ message: userMessage })
+    });
 
-                const data = await response.json();
-                document.getElementById(typingId)?.remove();
+    const data = await response.json();
+    document.getElementById(typingId)?.remove();
 
-                if (response.ok) {
-                    chatMessages.innerHTML += `
-                        <div class="mb-3">
-                            <div class="bg-black text-white p-2 rounded-3 border border-secondary d-inline-block shadow-sm" style="max-width: 90%;">
-                                ${data.reply}
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    throw new Error('Error en API');
-                }
-            } catch (error) {
-                document.getElementById(typingId)?.remove();
-                chatMessages.innerHTML += `
-                    <div class="mb-3 text-danger small">Hubo un error de conexión.</div>
-                `;
-            }
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        });
+    if (response.ok && data.reply) {
+        chatMessages.innerHTML += `
+            <div class="mb-3">
+                <div class="bg-black text-white p-2 rounded-3 border border-secondary d-inline-block shadow-sm" style="max-width: 90%;">
+                    ${data.reply}
+                </div>
+            </div>
+        `;
+    } else {
+        throw new Error(data.message || 'Error en la respuesta del servidor');
     }
-});
+} catch (error) {
+    document.getElementById(typingId)?.remove();
+    chatMessages.innerHTML += `
+        <div class="mb-3 text-danger small">Error: No se pudo conectar con YellowBot.</div>
+    `;
+}
