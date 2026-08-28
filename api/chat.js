@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Método no permitido' });
@@ -6,10 +8,7 @@ export default async function handler(req, res) {
     try {
         const { message, currentUrl } = req.body;
         const geminiApiKey = process.env.GEMINI_API_KEY;
-
-        if (!geminiApiKey) {
-            return res.status(500).json({ message: 'Falta configurar la API Key de Gemini en Vercel.' });
-        }
+        const groqApiKey = process.env.GROQ_API_KEY;
 
         const systemPrompt = `
 Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de diseño y desarrollo web profesional ubicado en Buenos Aires, Argentina. 
@@ -51,23 +50,52 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
    - Sé conciso y directo. Respondé en un máximo de 2 o 3 oraciones cortas.
 `;
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${geminiApiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
-                }]
-            })
-        });
+        let reply = '';
+        const useGroq = Math.random() < 0.5 && groqApiKey;
 
-        const data = await response.json();
+        if (useGroq) {
+            try {
+                const groq = new OpenAI({
+                    apiKey: groqApiKey,
+                    baseURL: "https://api.groq.com/openai/v1"
+                });
 
-        if (!response.ok) {
-            return res.status(500).json({ message: data.error?.message || 'Error al conectar con Gemini' });
+                const completion = await groq.chat.completions.create({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [
+                        { role: "system", content: systemPrompt },
+                        { role: "user", content: message }
+                    ],
+                    temperature: 0.7,
+                });
+
+                reply = completion.choices[0]?.message?.content;
+            } catch (groqError) {
+                console.warn("Groq falló, usando Gemini como respaldo:", groqError);
+            }
         }
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '¡Hola! ¿En qué puedo ayudarte hoy con tu proyecto?';
+        if (!reply && geminiApiKey) {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
+                    }]
+                })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            }
+        }
+
+        if (!reply) {
+            reply = '¡Hola! ¿En qué puedo ayudarte hoy con tu proyecto en Yellow Web Studio? Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.';
+        }
+
         return res.status(200).json({ reply });
 
     } catch (error) {
