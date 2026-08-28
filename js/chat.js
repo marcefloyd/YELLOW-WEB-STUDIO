@@ -50,13 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
+                // Detecta automáticamente la página actual (ej: index.html, presupuesto.html, etc.)
+                const currentUrl = window.location.pathname.split('/').pop() || 'index.html';
+
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ message: userMessage })
+                    body: JSON.stringify({ 
+                        message: userMessage, 
+                        currentUrl: currentUrl 
+                    })
                 });
 
                 const data = await response.json();
