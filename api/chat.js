@@ -51,9 +51,33 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
 `;
 
         let reply = '';
-        const useGroq = Math.random() < 0.5 && groqApiKey;
 
-        if (useGroq) {
+        // Intentamos primero con Gemini directo que sabemos que funciona bien en tu panel
+        if (geminiApiKey) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } else {
+                    console.error("Error en Gemini:", data);
+                }
+            } catch (geminiError) {
+                console.error("Excepción en Gemini:", geminiError);
+            }
+        }
+
+        // Si Gemini falló, intentamos con Groq usando un modelo estándar actual
+        if (!reply && groqApiKey) {
             try {
                 const groq = new OpenAI({
                     apiKey: groqApiKey,
@@ -61,7 +85,7 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
                 });
 
                 const completion = await groq.chat.completions.create({
-                    model: "llama-3.3-70b-versatile",
+                    model: "llama3-70b-8192",
                     messages: [
                         { role: "system", content: systemPrompt },
                         { role: "user", content: message }
@@ -71,24 +95,7 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
 
                 reply = completion.choices[0]?.message?.content;
             } catch (groqError) {
-                console.warn("Groq falló, usando Gemini como respaldo:", groqError);
-            }
-        }
-
-        if (!reply && geminiApiKey) {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: `${systemPrompt}\n\nMensaje del cliente: ${message}` }]
-                    }]
-                })
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                console.warn("Groq también falló:", groqError);
             }
         }
 
