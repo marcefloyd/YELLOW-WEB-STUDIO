@@ -70,10 +70,13 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
                     const data = await response.json();
                     if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
                         reply = data.candidates[0].content.parts[0].text;
+                        console.log(`Éxito con Gemini usando el modelo: ${model}`);
                         break;
+                    } else {
+                        console.warn(`Gemini (${model}) respondió con error:`, JSON.stringify(data));
                     }
                 } catch (e) {
-                    // Intenta con el siguiente modelo de Gemini
+                    console.error(`Excepción en Gemini (${model}):`, e.message);
                 }
             }
         }
@@ -97,22 +100,24 @@ REGLAS ESTRICTAS DE COMPORTAMIENTO PARA YELLOWBOT:
 
                     reply = completion.choices[0]?.message?.content;
                     if (reply) {
+                        console.log(`Éxito con Groq usando el modelo: ${model}`);
                         break;
                     }
                 } catch (e) {
-                    // Intenta con el siguiente modelo de Groq
+                    console.warn(`Groq (${model}) falló:`, e.message);
                 }
             }
         }
 
         if (!reply) {
+            console.error("Ningún modelo de Gemini ni de Groq devolvió respuesta.");
             reply = '¡Hola! ¿En qué puedo ayudarte hoy con tu proyecto en Yellow Web Studio? Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.';
         }
 
         return res.status(200).json({ reply });
 
     } catch (error) {
-        console.error("Error en el backend:", error);
+        console.error("Error crítico en el backend:", error);
         return res.status(500).json({ message: 'Error interno en el servidor.' });
     }
 }
