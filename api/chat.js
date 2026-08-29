@@ -26,9 +26,9 @@ Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de dise√
             baseURL: "https://api.groq.com/openai/v1"
         });
 
-        // Usamos el modelo activo y oficial actual de Groq
+        // Usamos el Model ID oficial y activo de la documentaci√≥n
         const completion = await groq.chat.completions.create({
-            model: "llama-3.3-70b-versatile",
+            model: "llama-3.1-8b-instant",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: message }
