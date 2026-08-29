@@ -1,5 +1,3 @@
-import OpenAI from "openai";
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Método no permitido' });
@@ -7,10 +5,10 @@ export default async function handler(req, res) {
 
     try {
         const { message, currentUrl } = req.body;
-        const groqApiKey = process.env.GROQ_API_KEY;
+        const geminiApiKey = process.env.GEMINI_API_KEY;
 
-        if (!groqApiKey) {
-            return res.status(500).json({ message: 'Falta configurar la clave de Groq en Vercel.' });
+        if (!geminiApiKey) {
+            return res.status(500).json({ message: 'Falta configurar la clave de Gemini en Vercel.' });
         }
 
         const systemPrompt = `
@@ -21,31 +19,49 @@ Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de dise�
 - Sé muy conciso y directo (máximo 2 oraciones).
 `;
 
-        const groq = new OpenAI({
-            apiKey: groqApiKey,
-            baseURL: "https://api.groq.com/openai/v1"
-        });
+        // Lista completa de modelos de Gemini para iterar y evitar errores por cambios de versión
+        const geminiModels = [
+            'gemini-2.5-flash',
+            'gemini-1.5-flash',
+            'gemini-1.5-pro',
+            'gemini-pro'
+        ];
 
-        // Usamos el Model ID oficial y activo de la documentación
-        const completion = await groq.chat.completions.create({
-            model: "llama-3.1-8b-instant",
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: message }
-            ],
-            temperature: 0.7,
-        });
+        let reply = '';
 
-        const reply = completion.choices[0]?.message?.content;
+        for (const model of geminiModels) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `${systemPrompt}\n\nCliente: ${message}` }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    reply = data.candidates[0].content.parts[0].text;
+                    break; // Si uno responde con éxito, salimos del ciclo
+                } else {
+                    console.warn(`Gemini (${model}) no devolvió contenido válido:`, JSON.stringify(data));
+                }
+            } catch (e) {
+                console.warn(`Error al intentar con el modelo Gemini (${model}):`, e.message);
+            }
+        }
 
         if (!reply) {
-            return res.status(200).json({ reply: '¡Hola! Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.' });
+            reply = '¡Hola! Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.';
         }
 
         return res.status(200).json({ reply });
 
     } catch (error) {
-        console.error("Error al conectar con Groq:", error.message);
+        console.error("Error crítico en el backend:", error.message);
         return res.status(500).json({ message: 'Error interno en el servidor.' });
     }
 }
