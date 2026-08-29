@@ -20,8 +20,7 @@ Contexto: El usuario está en "${currentUrl || 'index.html'}".
 - Sé muy conciso (máximo 2 oraciones).
 `;
 
-        // Usamos el endpoint oficial estable v1 con gemini-1.5-flash
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey.trim()}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -35,7 +34,7 @@ Contexto: El usuario está en "${currentUrl || 'index.html'}".
         
         if (!response.ok) {
             console.error("Error de la API de Gemini:", JSON.stringify(data));
-            return res.status(200).json({ reply: '¡Hola! Podés contactarnos por WhatsApp al 5491164639977 o a yellowwebstudio3@gmail.com.' });
+            return res.status(200).json({ reply: '¡Hola! Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.' });
         }
 
         const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
