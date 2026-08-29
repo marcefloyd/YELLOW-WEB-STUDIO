@@ -13,55 +13,41 @@ export default async function handler(req, res) {
 
         const systemPrompt = `
 Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de diseño y desarrollo web profesional ubicado en Buenos Aires, Argentina. 
-- Correo electrónico oficial: yellowwebstudio3@gmail.com.
+Contexto: El usuario está en "${currentUrl || 'index.html'}".
+- Correo oficial: yellowwebstudio3@gmail.com.
 - WhatsApp oficial: https://wa.me/5491164639977.
-- Si el usuario quiere cotizar, indicale exactamente: "Podés hacer clic en el botón 'Armá tu presupuesto' en la página de inicio o ingresar a 'Cotizador Online' desde el menú de navegación superior."
-- Sé muy conciso y directo (máximo 2 oraciones).
+- Si quieren cotizar, indicarles: "Podés hacer clic en el botón 'Armá tu presupuesto' en la página de inicio o ingresar a 'Cotizador Online' desde el menú de navegación superior."
+- Sé muy conciso (máximo 2 oraciones).
 `;
 
-        // Lista completa de modelos de Gemini para iterar y evitar errores por cambios de versión
-        const geminiModels = [
-            'gemini-2.5-flash',
-            'gemini-1.5-flash',
-            'gemini-1.5-pro',
-            'gemini-pro'
-        ];
+        // Usamos el endpoint oficial estable v1 con gemini-1.5-flash
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: `${systemPrompt}\n\nCliente: ${message}` }]
+                }]
+            })
+        });
 
-        let reply = '';
-
-        for (const model of geminiModels) {
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: `${systemPrompt}\n\nCliente: ${message}` }]
-                        }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (response.ok && data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    reply = data.candidates[0].content.parts[0].text;
-                    break; // Si uno responde con éxito, salimos del ciclo
-                } else {
-                    console.warn(`Gemini (${model}) no devolvió contenido válido:`, JSON.stringify(data));
-                }
-            } catch (e) {
-                console.warn(`Error al intentar con el modelo Gemini (${model}):`, e.message);
-            }
+        const data = await response.json();
+        
+        if (!response.ok) {
+            console.error("Error de la API de Gemini:", JSON.stringify(data));
+            return res.status(200).json({ reply: '¡Hola! Podés contactarnos por WhatsApp al 5491164639977 o a yellowwebstudio3@gmail.com.' });
         }
 
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
         if (!reply) {
-            reply = '¡Hola! Escribinos a yellowwebstudio3@gmail.com o por WhatsApp al 5491164639977.';
+            return res.status(200).json({ reply: '¡Hola! ¿En qué podemos ayudarte con tu proyecto? Escribinos a yellowwebstudio3@gmail.com.' });
         }
 
         return res.status(200).json({ reply });
 
     } catch (error) {
-        console.error("Error crítico en el backend:", error.message);
+        console.error("Error crítico en el servidor:", error.message);
         return res.status(500).json({ message: 'Error interno en el servidor.' });
     }
 }
