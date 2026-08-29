@@ -10,8 +10,7 @@ export default async function handler(req, res) {
         const groqApiKey = process.env.GROQ_API_KEY;
 
         if (!groqApiKey) {
-            console.error("Falta la variable GROQ_API_KEY en Vercel.");
-            return res.status(500).json({ message: 'Falta configurar la clave de Groq.' });
+            return res.status(500).json({ message: 'Falta configurar la clave de Groq en Vercel.' });
         }
 
         const systemPrompt = `
@@ -27,9 +26,9 @@ Sos el asistente comercial exclusivo de "Yellow Web Studio", un estudio de dise√
             baseURL: "https://api.groq.com/openai/v1"
         });
 
-        // Usamos directamente el modelo est√°ndar de Llama 3 en Groq
+        // Usamos el modelo activo y oficial actual de Groq
         const completion = await groq.chat.completions.create({
-            model: "llama3-70b-8192",
+            model: "llama-3.3-70b-versatile",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: message }
