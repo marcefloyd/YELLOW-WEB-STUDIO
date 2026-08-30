@@ -70,16 +70,16 @@
         <div class="container">
             <div class="row g-4">
                 
-                <!-- PROYECTO 1: VIBRANDO ACUARIO (NUEVO DESTACADO) -->
+                <!-- PROYECTO 1: VIBRANDO ACUARIO -->
                 <div class="col-lg-4 col-md-6">
                     <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
                         <div>
                             <div class="browser-window mb-3">
                                 <div class="browser-header">
                                     <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">vibrandoacuario.com</div>
+                                    <div class="browser-url">Vibrando Acuario Web</div>
                                 </div>
-                                <img src="img/vibrando-acuario.png" class="img-fluid w-100" alt="Proyecto Vibrando Acuario">
+                                <img src="img/vibrandoacuario porfolio.jpg" class="img-fluid w-100" alt="Proyecto Vibrando Acuario">
                             </div>
                             <span class="badge bg-warning text-dark mb-2">Desarrollo Interactivo</span>
                             <h3 class="text-white h5 mb-2">Vibrando Acuario</h3>
@@ -93,9 +93,16 @@
                                 <span class="badge bg-black text-secondary border border-secondary">JSON Data</span>
                                 <span class="badge bg-black text-secondary border border-secondary">JS Vanilla</span>
                             </div>
-                            <a href="presupuesto.html" class="btn btn-outline-warning w-100 fw-bold btn-sm">
-                                Cotizar un proyecto similar
-                            </a>
+                            <!-- NUEVOS BOTONES -->
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-warning w-50 fw-bold btn-sm" data-bs-toggle="modal" data-bs-target="#modalAcuario">
+                                    Caso de Estudio 🔍
+                                </button>
+                                <!-- ACA PONE TU LINK REAL DE VERCEL -->
+                                <a href="https://astroweb3-main.vercel.app/" target="_blank" class="btn btn-warning text-dark w-50 fw-bold btn-sm">
+                                    Visitar Web ↗
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,9 +114,9 @@
                             <div class="browser-window mb-3">
                                 <div class="browser-header">
                                     <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">barberia-studio.com</div>
+                                    <div class="browser-url">Barbería & Hair Studio</div>
                                 </div>
-                                <img src="img/proyecto1.png" class="img-fluid w-100" alt="Proyecto Barbería">
+                                <img src="img/proyecto2.png" class="img-fluid w-100" alt="Proyecto Barbería">
                             </div>
                             <span class="badge bg-warning text-dark mb-2">Landing Page + Turnos</span>
                             <h3 class="text-white h5 mb-2">Barbería & Hair Studio</h3>
@@ -137,7 +144,7 @@
                             <div class="browser-window mb-3">
                                 <div class="browser-header">
                                     <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">estudiocontable.com.ar</div>
+                                    <div class="browser-url">Estudio Contable & Asesores</div>
                                 </div>
                                 <img src="img/proyecto2.png" class="img-fluid w-100" alt="Proyecto Estudio Contable">
                             </div>
@@ -167,9 +174,9 @@
                             <div class="browser-window mb-3">
                                 <div class="browser-header">
                                     <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">fit-center.com</div>
+                                    <div class="browser-url">Crossfit & Fit Center</div>
                                 </div>
-                                <img src="img/vibrandoacuario porfolio.jpg" class="img-fluid w-100" alt="Proyecto Gimnasio">
+                                <img src="img/proyecto3.png" class="img-fluid w-100" alt="Proyecto Gimnasio">
                             </div>
                             <span class="badge bg-warning text-dark mb-2">Desarrollo Personalizado</span>
                             <h3 class="text-white h5 mb-2">Crossfit & Fit Center</h3>
@@ -204,6 +211,49 @@
             </a>
         </div>
     </section>
+    <!-- MODAL CASO DE ESTUDIO: VIBRANDO ACUARIO -->
+    <div class="modal fade" id="modalAcuario" tabindex="-1" aria-labelledby="modalAcuarioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark border-warning text-white">
+                <div class="modal-header border-secondary border-bottom">
+                    <h5 class="modal-title text-warning fw-bold" id="modalAcuarioLabel">✨ Caso de Estudio: Vibrando Acuario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <h6 class="text-white fw-bold mb-2">El Desafío</h6>
+                    <p class="text-secondary mb-4">
+                        Crear una plataforma inmersiva que permitiera a los usuarios calcular e interpretar posiciones astrológicas complejas (grados zodiacales) de forma rápida e intuitiva, sin recargar la página.
+                    </p>
+                    
+                    <h6 class="text-white fw-bold mb-2">La Solución</h6>
+                    <p class="text-secondary mb-4">
+                        Se desarrolló un sitio web interactivo con estética "Dark Mode", videos espaciales y efectos neón para transmitir profundidad cósmica. Se implementó un motor de búsqueda por JavaScript que conecta las selecciones del usuario con una base de datos local (JSON) para devolver resultados instantáneos.
+                    </p>
+
+                    <h6 class="text-white fw-bold mb-3">Servicios Aplicados</h6>
+                    <ul class="list-group list-group-flush mb-4 rounded-3 border border-secondary">
+                        <li class="list-group-item bg-black text-secondary border-secondary">
+                            <strong class="text-white">1. Sitio Web Personalizado:</strong> Arquitectura a medida para salir del clásico modelo institucional.
+                        </li>
+                        <li class="list-group-item bg-black text-secondary border-secondary">
+                            <strong class="text-white">2. Diseño UI/UX Avanzado:</strong> Interfaz inmersiva con paleta de colores estricta y efectos visuales CSS.
+                        </li>
+                        <li class="list-group-item bg-black text-secondary border-secondary">
+                            <strong class="text-white">3. Desarrollo Interactivo:</strong> Calculadora en tiempo real y lectura de datos JSON (sin backend).
+                        </li>
+                        <li class="list-group-item bg-black text-secondary border-secondary">
+                            <strong class="text-white">4. Módulos Extras:</strong> Carruseles dinámicos y menú de navegación complejo.
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-secondary border-top justify-content-between">
+                    <a href="presupuesto.html" class="btn btn-outline-light btn-sm">Cotizar proyecto similar</a>
+                    <!-- ACA PONE TU LINK REAL DE VERCEL -->
+                    <a href="https://astroweb3-main.vercel.app/" target="_blank" class="btn btn-warning text-dark fw-bold btn-sm">Visitar Vibrando Acuario ↗</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER UNIVERSAL -->
     <footer class="bg-black text-white pt-5 pb-4 border-top border-secondary mt-auto">
