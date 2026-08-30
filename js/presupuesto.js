@@ -112,7 +112,6 @@ function cargarPaso2() {
     const yaAgregado = presupuesto.extras.some(e => e.clave === clave);
     if (yaAgregado) card.classList.add("selected");
 
-    // Botón de Ver Ejemplo rediseñado en bloque o estilo link superior
     let demoButtonHTML = '';
     if (clave === 'turnos') {
       demoButtonHTML = `
@@ -264,7 +263,7 @@ function cargarPaso4() {
 }
 
 //=========================================
-// PASO 5: DATOS Y WHATSAPP
+// PASO 5: DATOS Y WHATSAPP (MODIFICADO)
 //=========================================
 function cargarPaso5() {
   presupuesto.pasoActual = 5;
@@ -272,28 +271,15 @@ function cargarPaso5() {
   document.getElementById("stepText").textContent = "Paso 5 de 5: Confirmación";
   document.getElementById("progressBar").style.width = "100%";
 
+  // Dejamos un mensaje visual para que entiendan que terminaron, en celular esto queda chiquito arriba.
   serviceGrid.innerHTML = `
-    <div class="service-card p-4">
-      <h3 class="text-warning mb-3">Tus Datos de Contacto</h3>
-      <p class="text-secondary mb-4">Ingresá tu nombre y negocio para personalizar la cotización antes de enviar.</p>
-      
-      <div class="mb-3">
-        <label class="form-label text-white fw-bold">Nombre Completo *</label>
-        <input type="text" id="clienteNombre" class="form-control bg-dark text-white border-secondary" placeholder="Ej: Juan Pérez" value="${presupuesto.cliente.nombre}">
-      </div>
-
-      <div class="mb-4">
-        <label class="form-label text-white fw-bold">Empresa o Rubro</label>
-        <input type="text" id="clienteEmpresa" class="form-control bg-dark text-white border-secondary" placeholder="Ej: Barbería / Gimnasio" value="${presupuesto.cliente.empresa}">
-      </div>
-
-      <button id="btnEnviarWA" class="btn btn-success btn-lg w-100 fw-bold rounded-pill">
-        <i class="bi bi-whatsapp me-2"></i> Enviar Presupuesto por WhatsApp
-      </button>
+    <div class="service-card p-4 text-center border-warning">
+      <i class="bi bi-check-circle-fill text-warning mb-3" style="font-size: 3rem;"></i>
+      <h3 class="text-warning">¡Presupuesto Armado!</h3>
+      <p class="text-secondary mt-2 mb-0">Revisá el detalle final de tu cotización en el resumen y completá tus datos para enviarlo por WhatsApp.</p>
     </div>
   `;
 
-  document.getElementById("btnEnviarWA").addEventListener("click", enviarWhatsApp);
   renderizarResumen();
 }
 
@@ -314,7 +300,7 @@ presupuesto.recalcularTotal = function() {
 };
 
 //=========================================
-// RENDERIZAR RESUMEN LATERAL
+// RENDERIZAR RESUMEN LATERAL (MODIFICADO)
 //=========================================
 function renderizarResumen() {
   const summary = document.getElementById("summaryContent");
@@ -344,7 +330,7 @@ function renderizarResumen() {
   ` : '';
 
   let botonVolverHTML = presupuesto.pasoActual > 1 ? `
-    <button class="btn btn-outline-secondary w-100 mb-2 fw-bold" id="btnVolverPaso">
+    <button class="btn btn-outline-secondary w-100 fw-bold" id="btnVolverPaso">
       ← Paso Anterior
     </button>
   ` : '';
@@ -354,6 +340,27 @@ function renderizarResumen() {
   if (presupuesto.pasoActual === 2) textoBotonSiguiente = "Siguiente: Infraestructura →";
   if (presupuesto.pasoActual === 3) textoBotonSiguiente = "Siguiente: Seguridad →";
   if (presupuesto.pasoActual === 4) textoBotonSiguiente = "Finalizar Presupuesto →";
+
+  // ACÁ INYECTAMOS EL FORMULARIO DE WHATSAPP AL FINAL DEL RESUMEN SÓLO EN EL PASO 5
+  let formularioWhatsApp = '';
+  if (presupuesto.pasoActual === 5) {
+    formularioWhatsApp = `
+      <div class="p-3 mt-4 mb-3 rounded border border-warning bg-black">
+        <h5 class="text-warning mb-3 text-center fs-6">Tus Datos de Contacto</h5>
+        <div class="mb-3 text-start">
+          <label class="form-label text-white fw-bold small">Nombre Completo *</label>
+          <input type="text" id="clienteNombre" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Ej: Juan Pérez" value="${presupuesto.cliente.nombre}">
+        </div>
+        <div class="mb-3 text-start">
+          <label class="form-label text-white fw-bold small">Empresa o Rubro</label>
+          <input type="text" id="clienteEmpresa" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Ej: Barbería" value="${presupuesto.cliente.empresa}">
+        </div>
+        <button id="btnEnviarWA" class="btn btn-success w-100 fw-bold rounded-pill mt-2 py-2">
+          <i class="bi bi-whatsapp me-2"></i> Enviar Presupuesto
+        </button>
+      </div>
+    `;
+  }
 
   summary.innerHTML = `
     <h4>${presupuesto.servicio.nombre}</h4>
@@ -370,12 +377,19 @@ function renderizarResumen() {
       <span class="fs-4 fw-bold text-warning">$${presupuesto.total.toLocaleString("es-AR")}</span>
     </div>
 
-    ${botonVolverHTML}
     ${presupuesto.pasoActual < 5 ? `
-      <button class="btn-select w-100 fw-bold py-2" id="btnSiguientePaso">
-        ${textoBotonSiguiente}
-      </button>
-    ` : ''}
+      <div class="d-flex flex-column gap-2 mt-4">
+        ${botonVolverHTML}
+        <button class="btn-select w-100 fw-bold py-2" id="btnSiguientePaso">
+          ${textoBotonSiguiente}
+        </button>
+      </div>
+    ` : `
+      ${formularioWhatsApp}
+      <div class="mt-2">
+        ${botonVolverHTML}
+      </div>
+    `}
   `;
 
   if (document.getElementById("btnVolverPaso")) {
@@ -394,6 +408,11 @@ function renderizarResumen() {
       else if (presupuesto.pasoActual === 3) cargarPaso4();
       else if (presupuesto.pasoActual === 4) cargarPaso5();
     });
+  }
+
+  // AGREGAMOS EL LISTENER AL BOTÓN DE WHATSAPP CUANDO SE CREA EN EL PASO 5
+  if (presupuesto.pasoActual === 5 && document.getElementById("btnEnviarWA")) {
+    document.getElementById("btnEnviarWA").addEventListener("click", enviarWhatsApp);
   }
 
   actualizarWidgetMovil();
@@ -426,9 +445,9 @@ function inicializarEventosMovil() {
   if (!stickyBar) return;
 
   stickyBar.addEventListener("click", () => {
-    const resumenBox = document.getElementById("summaryContent") || document.querySelector(".summary-box");
+    const resumenBox = document.querySelector(".summary") || document.getElementById("summaryContent");
     if (resumenBox) {
-      resumenBox.scrollIntoView({ behavior: "smooth" });
+      resumenBox.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   });
 }

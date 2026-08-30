@@ -7,23 +7,59 @@
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- ACÁ AGREGAMOS EL CSS PRINCIPAL PARA QUE EL MENÚ SE VEA IGUAL -->
+  <link rel="stylesheet" href="css/style.css"> 
+  
   <link rel="stylesheet" href="css/presupuesto.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <header class="top-bar">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="index.html" class="back-btn">← Volver al sitio</a>
-      <div class="logo-mini">:// YELLOW WEB STUDIO</div>
-    </div>
-  </header>
-
-  <section class="hero-budget">
+ 
+  <!-- NAVEGACIÓN -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black shadow-sm">
     <div class="container">
-      <h1>Construí tu proyecto web</h1>
-      <p>Elegí el tipo de sitio y personalizá los extras para armar tu presupuesto estimado al instante.</p>
+        <a class="navbar-brand logo" href="index.html">
+            <div class="logo-container">
+                <span class="logo-title">:// YELLOW</span>
+                <span class="logo-subtitle">WEB STUDIO</span>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="servicios.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-warning" href="presupuesto.html">
+                        ⚡ Cotizador Online
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="portfolio.html">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </section>
+</nav>
+
+ <section class="hero-budget pt-5 mt-5">
+    <div class="container">
+        <h1 class="pt-4">Construí tu proyecto web</h1>
+        <p>Elegí el tipo de sitio y personalizá los extras para armar tu presupuesto estimado al instante.</p>
+    </div>
+</section>
 
   <section class="budget py-4">
     <div class="container">
@@ -168,5 +204,6 @@
 
   <script src="js/presupuesto.js"></script>
   <script src="js/chat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
