@@ -91,19 +91,23 @@ LOGO
   line-height: 1;
 }
 
-/*==========================
+/* ==========================
 HERO
 ==========================*/
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 750px;
+  width: 100%;
 }
 
 .hero-title {
@@ -124,6 +128,61 @@ HERO
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+}
+/* ==========================
+   CINTILLO ANIMADO (TICKER)
+   ========================== */
+.ticker-wrap {
+  width: 100%;
+  white-space: nowrap;
+  position: relative;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker-anim 30s linear infinite;
+}
+
+.ticker-item {
+  font-size: 0.95rem;
+  padding: 0 15px;
+}
+
+/* Servicios con link (Amarillos y interactivos) */
+.service-link {
+  color: #ffc107;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.service-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Tecnologías sin link (Blancas/grises, estáticas) */
+.tech-label {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+.ticker-separator {
+  color: #555;
+  padding: 0 5px;
+}
+
+/* Animación de desplazamiento infinito */
+@keyframes ticker-anim {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+/* Animación de desplazamiento infinito */
+@keyframes ticker-anim {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .btn-yellow {
@@ -299,6 +358,33 @@ MEDIA QUERIES
     text-align: center;
     padding-top: 120px;
   }
+  /* ==========================
+   OPTIMIZACIÓN MÓVIL (RESPONSIVE)
+   ========================== */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 100px; /* Deja aire debajo de la barra fija */
+    padding-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem !important; /* Achicamos el título para que no ocupe toda la pantalla */
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  /* Hacemos que los botones vuelvan a estar lado a lado o con un ancho prolijo en celu */
+  .hero-buttons, .d-flex.flex-wrap {
+    justify-content: center;
+    gap: 10px !important;
+  }
+}
 
   .browser-window {
     margin-top: 50px;
@@ -332,4 +418,32 @@ FOOTER HOVER
 
 .hover-yellow:hover {
   color: #FFC107 !important;
+}
+/* ==========================
+   CENTRAR EL HERO POR COMPLETO
+==========================*/
+.hero {
+  min-height: auto; /* Quitamos el alto forzado de pantalla completa */
+  padding-top: 140px; /* Espacio para que no choque con la barra de navegación fija */
+  padding-bottom: 80px; /* Espacio controlado abajo de los botones */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Centra los elementos internos como los botones */
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-text {
+  max-width: 650px;        /* Ampliamos un poco el párrafo para que respire centrado */
+  margin-left: auto;
+  margin-right: auto;
 }

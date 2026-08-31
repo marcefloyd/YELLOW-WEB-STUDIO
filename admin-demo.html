@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Panel de Administración :// YELLOW Web Studio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            background-color: #000;
+            border-right: 1px solid #333;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .preview-container {
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #1a1a1a;
+        }
+        .preview-mockup {
+            border: 2px dashed #ffc107;
+            border-radius: 12px;
+            background-color: #121212;
+        }
+        .preview-img {
+            width: 100%;
+            max-height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .thumb-gallery {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #ffc107;
+            color: #000;
+            font-weight: bold;
+        }
+        .nav-pills .nav-link {
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 p-4 sidebar">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-warning fw-bold mb-0">:// Panel Demo CMS</h4>
+                    <a href="portfolio.html" class="btn btn-outline-secondary btn-sm">← Volver</a>
+                </div>
+                <p class="text-secondary small mb-3">Gestión avanzada de textos, portada y múltiples imágenes.</p>
+
+                <ul class="nav nav-pills nav-fill mb-4 bg-dark p-1 rounded" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active py-1 px-2" data-bs-toggle="pill" data-bs-target="#pills-textos" type="button">Textos</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link py-1 px-2" data-bs-toggle="pill" data-bs-target="#pills-imagenes" type="button">Portada</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link py-1 px-2" data-bs-toggle="pill" data-bs-target="#pills-galeria" type="button">Galería Extra</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link py-1 px-2" data-bs-toggle="pill" data-bs-target="#pills-precios" type="button">Precios</button>
+                    </li>
+                </ul>
+
+                <form id="adminForm">
+                    <div class="tab-content" id="pills-tabContent">
+                        
+                        <div class="tab-pane fade show active" id="pills-textos">
+                            <h6 class="text-warning small fw-bold mb-3"><i class="bi bi-file-text me-1"></i> Textos Principales</h6>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Título Principal</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="inputTitle" value="Taron Interactivo">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Texto Descriptivo</label>
+                                <textarea class="form-control bg-dark text-white border-secondary form-control-sm" id="inputDesc" rows="3">Diseño y desarrollo web profesional adaptado a pequeños negocios.</textarea>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-imagenes">
+                            <h6 class="text-warning small fw-bold mb-3"><i class="bi bi-image me-1"></i> Imagen de Portada</h6>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">URL de la Imagen Principal</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="inputImg" value="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80">
+                                <div class="form-text text-muted" style="font-size: 11px;">Imagen destacada de la cabecera.</div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-galeria">
+                            <h6 class="text-warning small fw-bold mb-3"><i class="bi bi-images me-1"></i> Fotos de Trabajos / Galería</h6>
+                            <p class="text-secondary" style="font-size: 11px;">El cliente puede cambiar las fotos secundarias de su portfolio interno:</p>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Foto Extra 1 (URL)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm mb-1" id="inputExtra1" value="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Foto Extra 2 (URL)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm mb-1" id="inputExtra2" value="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80">
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-precios">
+                            <h6 class="text-warning small fw-bold mb-3"><i class="bi bi-tag me-1"></i> Elementos Comerciales</h6>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Precio / Inversión</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="inputPrice" value="$140.000">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-white small">Texto del Botón</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="inputBtn" value="¡Contratar Ahora!">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-secondary my-4">
+                    <button type="button" id="saveBtn" class="btn btn-warning text-dark fw-bold w-100 py-2 shadow">
+                        <i class="bi bi-cloud-arrow-up-fill me-2"></i> Guardar y Sincronizar
+                    </button>
+                </form>
+
+                <div id="alertBox" class="alert alert-success mt-3 d-none py-2 small text-center" role="alert">
+                    ¡Cambios guardados con éxito en GitHub! 🚀
+                </div>
+            </div>
+
+            <div class="col-lg-8 p-4 d-flex flex-column justify-content-start align-items-center preview-container">
+                <div class="w-100 mb-3 d-flex justify-content-between align-items-center" style="max-width: 700px;">
+                    <span class="badge bg-secondary text-dark">Vista previa de la Landing Page</span>
+                    <span class="text-warning small"><i class="bi bi-circle-fill text-success" style="font-size: 8px;"></i> Servidor Online</span>
+                </div>
+
+                <div class="w-100 preview-mockup p-4 shadow-lg mb-4" style="max-width: 700px;">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <img id="previewImg" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" class="preview-img mb-2 border border-secondary" alt="Preview">
+                        </div>
+                        <div class="col-md-6">
+                            <h2 id="previewTitle" class="h4 fw-bold text-white mb-2">Taron Interactivo</h2>
+                            <p id="previewDesc" class="text-secondary small mb-3">Diseño y desarrollo web profesional adaptado a pequeños negocios.</p>
+                            <div class="h5 text-warning fw-bold mb-3" id="previewPrice">$140.000</div>
+                            <button id="previewBtn" class="btn btn-warning text-dark fw-bold btn-sm w-100 rounded-pill">¡Contratar Ahora!</button>
+                        </div>
+                    </div>
+
+                    <hr class="border-secondary opacity-25">
+
+                    <div class="mt-3">
+                        <h6 class="text-white small fw-bold mb-2">Galería de Trabajos del Cliente:</h6>
+                        <div class="d-flex gap-2">
+                            <img id="previewExtra1" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80" class="thumb-gallery border border-secondary" alt="Extra 1">
+                            <img id="previewExtra2" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80" class="thumb-gallery border border-secondary" alt="Extra 2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const inputTitle = document.getElementById('inputTitle');
+        const inputDesc = document.getElementById('inputDesc');
+        const inputImg = document.getElementById('inputImg');
+        const inputExtra1 = document.getElementById('inputExtra1');
+        const inputExtra2 = document.getElementById('inputExtra2');
+        const inputPrice = document.getElementById('inputPrice');
+        const inputBtn = document.getElementById('inputBtn');
+
+        const previewTitle = document.getElementById('previewTitle');
+        const previewDesc = document.getElementById('previewDesc');
+        const previewImg = document.getElementById('previewImg');
+        const previewExtra1 = document.getElementById('previewExtra1');
+        const previewExtra2 = document.getElementById('previewExtra2');
+        const previewPrice = document.getElementById('previewPrice');
+        const previewBtn = document.getElementById('previewBtn');
+
+        const saveBtn = document.getElementById('saveBtn');
+        const alertBox = document.getElementById('alertBox');
+
+        inputTitle.addEventListener('input', () => { previewTitle.textContent = inputTitle.value; });
+        inputDesc.addEventListener('input', () => { previewDesc.textContent = inputDesc.value; });
+        inputImg.addEventListener('input', () => { previewImg.src = inputImg.value; });
+        inputExtra1.addEventListener('input', () => { previewExtra1.src = inputExtra1.value; });
+        inputExtra2.addEventListener('input', () => { previewExtra2.src = inputExtra2.value; });
+        inputPrice.addEventListener('input', () => { previewPrice.textContent = inputPrice.value; });
+        inputBtn.addEventListener('input', () => { previewBtn.textContent = inputBtn.value; });
+
+        saveBtn.addEventListener('click', () => {
+            alertBox.classList.remove('d-none');
+            setTimeout(() => {
+                alertBox.classList.add('d-none');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
