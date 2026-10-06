@@ -17,347 +17,805 @@
 
 <body>
 
-    <!-- NAVEGACIÓN -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand logo" href="index.html">
-            <div class="logo-container">
-                <span class="logo-title">:// YELLOW</span>
-                <span class="logo-subtitle">WEB STUDIO</span>
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <span class="logo-title">:// YELLOW</span>
+                    <span class="logo-subtitle">WEB STUDIO</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-warning" href="presupuesto.html">
+                            ⚡ Cotizador Online
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="portfolio.html">Portfolio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+
+                </ul>
             </div>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servicios.html">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold text-warning" href="presupuesto.html">
-                        ⚡ Cotizador Online
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="portfolio.html">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-            </ul>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <!-- HEADER PORTFOLIO -->
+
+    <!-- =========================
+         HEADER PORTFOLIO
+    ========================== -->
     <section class="py-5" style="margin-top: 90px;">
         <div class="container text-center pt-2">
-            <h1 class="display-4 fw-bold text-white mb-3">Trabajos Recientes</h1>
+
+            <h1 class="display-4 fw-bold text-white mb-3">
+                Trabajos Recientes
+            </h1>
+
             <p class="fs-5 text-secondary mx-auto" style="max-width: 650px;">
                 Echale un vistazo a los sitios web y herramientas digitales que diseñamos para nuestros clientes.
             </p>
+
         </div>
     </section>
 
-    <!-- GALERÍA DE PROYECTOS -->
+
+    <!-- =========================
+         GALERÍA DE PROYECTOS
+    ========================== -->
     <section class="pb-5">
         <div class="container">
+
             <div class="row g-4">
-                
-                <!-- PROYECTO 1: VIBRANDO ACUARIO -->
+
+
+                <!-- =====================================================
+                     PROYECTO 1 - VIBRANDO ACUARIO
+                ====================================================== -->
                 <div class="col-lg-4 col-md-6">
+
                     <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
+
                         <div>
+
                             <div class="browser-window mb-3">
+
                                 <div class="browser-header">
-                                    <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">Vibrando Acuario Web</div>
+
+                                    <div class="browser-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                    <div class="browser-url">
+                                        Vibrando Acuario Web
+                                    </div>
+
                                 </div>
-                                <img src="img/vibrandoacuario porfolio.jpg" class="img-fluid w-100" alt="Proyecto Vibrando Acuario">
+
+                                <!-- Video en loop, sin controles (cambiar la ruta por la de tu video) -->
+                                <video class="w-100 d-block"
+                                       style="aspect-ratio: 16 / 9; object-fit: cover;"
+                                       autoplay
+                                       muted
+                                       loop
+                                       playsinline
+                                       preload="metadata"
+                                       poster="img/shooterstones.jpg">
+                                    <source src="img/astrowebvideo_web.mp4" type="video/mp4">
+                                </video>
+
                             </div>
-                            <span class="badge bg-warning text-dark mb-2">Desarrollo Interactivo</span>
-                            <h3 class="text-white h5 mb-2">Vibrando Acuario</h3>
+
+                            <span class="badge bg-warning text-dark mb-2">
+                                Desarrollo Interactivo
+                            </span>
+
+                            <h3 class="text-white h5 mb-2">
+                                Vibrando Acuario
+                            </h3>
+
                             <p class="text-secondary small mb-3">
-                                Plataforma inmersiva de astrología con calculadora dinámica en tiempo real. Diseño "Dark Mode" con efectos neón y conexión a base de datos JSON local.
+                                Plataforma inmersiva de astrología con calculadora dinámica
+                                en tiempo real. Diseño Dark Mode con efectos neón y conexión
+                                a una base de datos JSON local.
                             </p>
+
                         </div>
+
                         <div>
+
                             <div class="d-flex flex-wrap gap-1 mb-3">
-                                <span class="badge bg-black text-secondary border border-secondary">UI/UX Dark</span>
-                                <span class="badge bg-black text-secondary border border-secondary">JSON Data</span>
-                                <span class="badge bg-black text-secondary border border-secondary">JS Vanilla</span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    UI/UX Dark
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    JSON Data
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    JS Vanilla
+                                </span>
+
                             </div>
-                            <!-- NUEVOS BOTONES -->
+
                             <div class="d-flex gap-2">
-                                <button type="button" class="btn btn-outline-warning w-50 fw-bold btn-sm" data-bs-toggle="modal" data-bs-target="#modalAcuario">
+
+                                <button type="button"
+                                        class="btn btn-outline-warning w-50 fw-bold btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalAcuario">
+
                                     Caso de Estudio 🔍
+
                                 </button>
-                                <!-- ACA PONE TU LINK REAL DE VERCEL -->
-                                <a href="https://astroweb3-main.vercel.app/" target="_blank" class="btn btn-warning text-dark w-50 fw-bold btn-sm">
+
+                                <a href="https://astroweb3-main.vercel.app/"
+                                   target="_blank"
+                                   class="btn btn-warning text-dark w-50 fw-bold btn-sm">
+
                                     Visitar Web ↗
+
                                 </a>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
+                <!-- =====================================================
+                     PROYECTO 2 - MADE BY MALU
+                ====================================================== -->
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
+
+                        <div>
+
+                            <div class="browser-window mb-3">
+
+                                <div class="browser-header">
+
+                                    <div class="browser-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                    <div class="browser-url">
+                                        Made by Malu
+                                    </div>
+
+                                </div>
+
+                                 <!-- Video en loop, sin controles (cambiar la ruta por la de tu video) -->
+                                <video class="w-100 d-block"
+                                       style="aspect-ratio: 16 / 9; object-fit: cover;"
+                                       autoplay
+                                       muted
+                                       loop
+                                       playsinline
+                                       preload="metadata"
+                                       poster="img/shooterstones.jpg">
+                                    <source src="img/madevideo_web.mp4" type="video/mp4">
+                                </video>
+                            </div>
+
+                            <span class="badge bg-warning text-dark mb-2">
+                                Sitio Web + Reservas
+                            </span>
+
+                            <h3 class="text-white h5 mb-2">
+                                Made by Malu
+                            </h3>
+
+                            <p class="text-secondary small mb-3">
+                                Sitio web para manicura y nail art con identidad visual
+                                personalizada, galería de trabajos y sistema de reservas
+                                mediante WhatsApp.
+                            </p>
+
+                        </div>
+
+                        <div>
+
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    HTML5/CSS3
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    JavaScript
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    WhatsApp
+                                </span>
+
+                            </div>
+
+                            <div class="d-flex gap-2">
+
+                                <a href="https://made-by-malu.vercel.app/"
+                                   target="_blank"
+                                   class="btn btn-warning text-dark w-50 fw-bold btn-sm">
+
+                                    Visitar Web ↗
+
+                                </a>
+
+                                <a href="presupuesto.html"
+                                   class="btn btn-outline-warning w-50 fw-bold btn-sm">
+
+                                    Cotizar similar
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
                 
-                <!-- PROYECTO 2: BARBERÍA -->
+
+               <!-- =====================================================
+                     PROYECTO 3 - SHOOTER STONES
+                ====================================================== -->
                 <div class="col-lg-4 col-md-6">
+
                     <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
+
                         <div>
+
                             <div class="browser-window mb-3">
+
                                 <div class="browser-header">
-                                    <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">Barbería & Hair Studio</div>
+
+                                    <div class="browser-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                    <div class="browser-url">
+                                        Shooter Stones
+                                    </div>
+
                                 </div>
-                                <img src="img/proyecto2.png" class="img-fluid w-100" alt="Proyecto Barbería">
+
+                                <!-- Video en loop, sin controles (cambiar la ruta por la de tu video) -->
+                                <video class="w-100 d-block"
+                                       style="aspect-ratio: 16 / 9; object-fit: cover;"
+                                       autoplay
+                                       muted
+                                       loop
+                                       playsinline
+                                       preload="metadata"
+                                       poster="img/shooterstones.jpg">
+                                    <source src="img/shooterstones_web.mp4" type="video/mp4">
+                                </video>
+
                             </div>
-                            <span class="badge bg-warning text-dark mb-2">Landing Page + Turnos</span>
-                            <h3 class="text-white h5 mb-2">Barbería & Hair Studio</h3>
+
+                            <span class="badge bg-warning text-dark mb-2">
+                                Juego Multijugador 3D
+                            </span>
+
+                            <h3 class="text-white h5 mb-2">
+                                Shooter Stones
+                            </h3>
+
                             <p class="text-secondary small mb-3">
-                                Rediseño de marca y desarrollo de landing con agenda de turnos integrada. Redujo un 40% las consultas manuales en WhatsApp.
+                                Juego multijugador de disparos y supervivencia táctica
+                                desarrollado en una arena 3D, con equipamiento,
+                                enemigos, efectos visuales y comunicación en tiempo real.
                             </p>
+
                         </div>
+
                         <div>
+
                             <div class="d-flex flex-wrap gap-1 mb-3">
-                                <span class="badge bg-black text-secondary border border-secondary">HTML5/CSS3</span>
-                                <span class="badge bg-black text-secondary border border-secondary">JS ES6</span>
-                                <span class="badge bg-black text-secondary border border-secondary">Agenda API</span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    Three.js
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    Node.js
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    Socket.io
+                                </span>
+
+                                <span class="badge bg-black text-secondary border border-secondary">
+                                    WebGL
+                                </span>
+
                             </div>
-                            <a href="presupuesto.html" class="btn btn-outline-warning w-100 fw-bold btn-sm">
-                                Cotizar un proyecto similar
-                            </a>
+
+                            <div class="d-flex gap-2">
+
+                                <a href="https://shooter-stones.onrender.com/"
+                                   target="_blank"
+                                   class="btn btn-warning text-dark w-50 fw-bold btn-sm">
+
+                                    Jugar ↗
+
+                                </a>
+
+                                <a href="presupuesto.html"
+                                   class="btn btn-outline-warning w-50 fw-bold btn-sm">
+
+                                    Cotizar similar
+
+                                </a>
+
+                            </div>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- PROYECTO 3: ESTUDIO CONTABLE -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="browser-window mb-3">
-                                <div class="browser-header">
-                                    <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">Estudio Contable & Asesores</div>
-                                </div>
-                                <img src="img/proyecto2.png" class="img-fluid w-100" alt="Proyecto Estudio Contable">
-                            </div>
-                            <span class="badge bg-warning text-dark mb-2">Sitio Institucional</span>
-                            <h3 class="text-white h5 mb-2">Estudio Contable & Asesores</h3>
-                            <p class="text-secondary small mb-3">
-                                Sitio web corporativo de 5 secciones con formulario de contacto directo y sección de preguntas frecuentes para clientes.
-                            </p>
-                        </div>
-                        <div>
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <span class="badge bg-black text-secondary border border-secondary">Bootstrap 5</span>
-                                <span class="badge bg-black text-secondary border border-secondary">SEO Base</span>
-                                <span class="badge bg-black text-secondary border border-secondary">Mail Server</span>
-                            </div>
-                            <a href="presupuesto.html" class="btn btn-outline-warning w-100 fw-bold btn-sm">
-                                Cotizar un proyecto similar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROYECTO 4: CROSSFIT -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="p-3 rounded-4 bg-dark border border-secondary h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="browser-window mb-3">
-                                <div class="browser-header">
-                                    <div class="browser-dots"><span></span><span></span><span></span></div>
-                                    <div class="browser-url">Crossfit & Fit Center</div>
-                                </div>
-                                <img src="img/proyecto3.png" class="img-fluid w-100" alt="Proyecto Gimnasio">
-                            </div>
-                            <span class="badge bg-warning text-dark mb-2">Desarrollo Personalizado</span>
-                            <h3 class="text-white h5 mb-2">Crossfit & Fit Center</h3>
-                            <p class="text-secondary small mb-3">
-                                Plataforma a medida con catálogo de actividades, sistema de login de usuarios y panel de administración para el cliente.
-                            </p>
-                        </div>
-                        <div>
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <span class="badge bg-black text-secondary border border-secondary">UI/UX Custom</span>
-                                <span class="badge bg-black text-secondary border border-secondary">Panel Admin</span>
-                                <span class="badge bg-black text-secondary border border-secondary">Usuarios</span>
-                            </div>
-                            <a href="presupuesto.html" class="btn btn-outline-warning w-100 fw-bold btn-sm">
-                                Cotizar un proyecto similar
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
     </section>
 
-    <!-- BANNER DE COTIZACIÓN -->
+
+    <!-- =========================
+         BANNER DE COTIZACIÓN
+    ========================== -->
     <section class="py-5 text-center bg-dark border-top border-secondary">
+
         <div class="container">
-            <h2 class="text-white mb-3">¿Querés que tu negocio se vea así?</h2>
-            <p class="text-secondary mb-4 fs-5">Simulá la inversión para tu sitio web en solo 2 minutos.</p>
-            <a href="presupuesto.html" class="btn btn-yellow btn-lg fw-bold px-5 rounded-pill">
+
+            <h2 class="text-white mb-3">
+                ¿Querés que tu negocio se vea así?
+            </h2>
+
+            <p class="text-secondary mb-4 fs-5">
+                Simulá la inversión para tu sitio web en solo 2 minutos.
+            </p>
+
+            <a href="presupuesto.html"
+               class="btn btn-yellow btn-lg fw-bold px-5 rounded-pill">
+
                 Ir al Cotizador Online →
+
             </a>
+
         </div>
+
     </section>
-    <!-- MODAL CASO DE ESTUDIO: VIBRANDO ACUARIO -->
-    <div class="modal fade" id="modalAcuario" tabindex="-1" aria-labelledby="modalAcuarioLabel" aria-hidden="true">
+
+
+    <!-- =====================================================
+         MODAL CASO DE ESTUDIO - VIBRANDO ACUARIO
+    ====================================================== -->
+    <div class="modal fade"
+         id="modalAcuario"
+         tabindex="-1"
+         aria-labelledby="modalAcuarioLabel"
+         aria-hidden="true">
+
         <div class="modal-dialog modal-dialog-centered modal-lg">
+
             <div class="modal-content bg-dark border-warning text-white">
+
                 <div class="modal-header border-secondary border-bottom">
-                    <h5 class="modal-title text-warning fw-bold" id="modalAcuarioLabel">✨ Caso de Estudio: Vibrando Acuario</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <h5 class="modal-title text-warning fw-bold"
+                        id="modalAcuarioLabel">
+
+                        ✨ Caso de Estudio: Vibrando Acuario
+
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+
                 </div>
+
                 <div class="modal-body p-4">
-                    <h6 class="text-white fw-bold mb-2">El Desafío</h6>
+
+                    <h6 class="text-white fw-bold mb-2">
+                        El Desafío
+                    </h6>
+
                     <p class="text-secondary mb-4">
-                        Crear una plataforma inmersiva que permitiera a los usuarios calcular e interpretar posiciones astrológicas complejas (grados zodiacales) de forma rápida e intuitiva, sin recargar la página.
-                    </p>
-                    
-                    <h6 class="text-white fw-bold mb-2">La Solución</h6>
-                    <p class="text-secondary mb-4">
-                        Se desarrolló un sitio web interactivo con estética "Dark Mode", videos espaciales y efectos neón para transmitir profundidad cósmica. Se implementó un motor de búsqueda por JavaScript que conecta las selecciones del usuario con una base de datos local (JSON) para devolver resultados instantáneos.
+                        Crear una plataforma inmersiva que permitiera a los usuarios
+                        calcular e interpretar posiciones astrológicas complejas
+                        de forma rápida e intuitiva, sin recargar la página.
                     </p>
 
-                    <h6 class="text-white fw-bold mb-3">Servicios Aplicados</h6>
+                    <h6 class="text-white fw-bold mb-2">
+                        La Solución
+                    </h6>
+
+                    <p class="text-secondary mb-4">
+                        Se desarrolló un sitio web interactivo con estética
+                        Dark Mode, videos espaciales y efectos neón para transmitir
+                        profundidad cósmica. Se implementó un motor de búsqueda
+                        mediante JavaScript conectado a una base de datos local JSON
+                        para devolver resultados instantáneos.
+                    </p>
+
+                    <h6 class="text-white fw-bold mb-3">
+                        Servicios Aplicados
+                    </h6>
+
                     <ul class="list-group list-group-flush mb-4 rounded-3 border border-secondary">
+
                         <li class="list-group-item bg-black text-secondary border-secondary">
-                            <strong class="text-white">1. Sitio Web Personalizado:</strong> Arquitectura a medida para salir del clásico modelo institucional.
+                            <strong class="text-white">
+                                1. Sitio Web Personalizado:
+                            </strong>
+                            Arquitectura a medida para salir del clásico modelo institucional.
                         </li>
+
                         <li class="list-group-item bg-black text-secondary border-secondary">
-                            <strong class="text-white">2. Diseño UI/UX Avanzado:</strong> Interfaz inmersiva con paleta de colores estricta y efectos visuales CSS.
+                            <strong class="text-white">
+                                2. Diseño UI/UX Avanzado:
+                            </strong>
+                            Interfaz inmersiva con paleta de colores estricta y efectos visuales CSS.
                         </li>
+
                         <li class="list-group-item bg-black text-secondary border-secondary">
-                            <strong class="text-white">3. Desarrollo Interactivo:</strong> Calculadora en tiempo real y lectura de datos JSON (sin backend).
+                            <strong class="text-white">
+                                3. Desarrollo Interactivo:
+                            </strong>
+                            Calculadora en tiempo real y lectura de datos JSON sin backend.
                         </li>
+
                         <li class="list-group-item bg-black text-secondary border-secondary">
-                            <strong class="text-white">4. Módulos Extras:</strong> Carruseles dinámicos y menú de navegación complejo.
+                            <strong class="text-white">
+                                4. Módulos Extras:
+                            </strong>
+                            Carruseles dinámicos y menú de navegación complejo.
                         </li>
+
                     </ul>
+
                 </div>
+
                 <div class="modal-footer border-secondary border-top justify-content-between">
-                    <a href="presupuesto.html" class="btn btn-outline-light btn-sm">Cotizar proyecto similar</a>
-                    <!-- ACA PONE TU LINK REAL DE VERCEL -->
-                    <a href="https://astroweb3-main.vercel.app/" target="_blank" class="btn btn-warning text-dark fw-bold btn-sm">Visitar Vibrando Acuario ↗</a>
+
+                    <a href="presupuesto.html"
+                       class="btn btn-outline-light btn-sm">
+
+                        Cotizar proyecto similar
+
+                    </a>
+
+                    <a href="https://astroweb3-main.vercel.app/"
+                       target="_blank"
+                       class="btn btn-warning text-dark fw-bold btn-sm">
+
+                        Visitar Vibrando Acuario ↗
+
+                    </a>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
-    <!-- FOOTER UNIVERSAL -->
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
     <footer class="bg-black text-white pt-5 pb-4 border-top border-secondary mt-auto">
+
         <div class="container">
+
             <div class="row g-4 mb-4">
+
+                <!-- LOGO -->
                 <div class="col-lg-4 col-md-6">
-                    <a class="navbar-brand logo d-inline-block mb-3" href="index.html">
+
+                    <a class="navbar-brand logo d-inline-block mb-3"
+                       href="index.html">
+
                         <div class="logo-container">
-                            <span class="logo-title">:// YELLOW</span>
-                            <span class="logo-subtitle">WEB STUDIO</span>
+
+                            <span class="logo-title">
+                                :// YELLOW
+                            </span>
+
+                            <span class="logo-subtitle">
+                                WEB STUDIO
+                            </span>
+
                         </div>
+
                     </a>
+
                     <p class="text-secondary small mb-3" style="max-width: 320px;">
-                        Diseño y desarrollo web profesional adaptado a pequeños negocios, profesionales y proyectos en crecimiento.
+                        Diseño y desarrollo web profesional adaptado a pequeños negocios,
+                        profesionales y proyectos en crecimiento.
                     </p>
+
                     <span class="badge bg-dark border border-warning text-warning px-3 py-2 rounded-pill">
                         ⚡ Buenos Aires, Argentina
                     </span>
+
                 </div>
 
+
+                <!-- NAVEGACIÓN -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-warning fw-bold mb-3 fs-6">Navegación</h5>
+
+                    <h5 class="text-warning fw-bold mb-3 fs-6">
+                        Navegación
+                    </h5>
+
                     <ul class="list-unstyled text-secondary small mb-0">
-                        <li class="mb-2"><a href="index.html" class="text-secondary text-decoration-none hover-yellow">Inicio</a></li>
-                        <li class="mb-2"><a href="servicios.html" class="text-secondary text-decoration-none hover-yellow">Servicios & Tarifas</a></li>
-                        <li class="mb-2"><a href="presupuesto.html" class="text-secondary text-decoration-none hover-yellow">Cotizador Online</a></li>
-                        <li class="mb-2"><a href="portfolio.html" class="text-secondary text-decoration-none hover-yellow">Portfolio</a></li>
-                        <li class="mb-2"><a href="contacto.html" class="text-secondary text-decoration-none hover-yellow">Contacto</a></li>
+
+                        <li class="mb-2">
+                            <a href="index.html"
+                               class="text-secondary text-decoration-none hover-yellow">
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="servicios.html"
+                               class="text-secondary text-decoration-none hover-yellow">
+                                Servicios & Tarifas
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="presupuesto.html"
+                               class="text-secondary text-decoration-none hover-yellow">
+                                Cotizador Online
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="portfolio.html"
+                               class="text-secondary text-decoration-none hover-yellow">
+                                Portfolio
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="contacto.html"
+                               class="text-secondary text-decoration-none hover-yellow">
+                                Contacto
+                            </a>
+                        </li>
+
                     </ul>
+
                 </div>
 
+
+                <!-- SOLUCIONES -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-warning fw-bold mb-3 fs-6">Soluciones</h5>
+
+                    <h5 class="text-warning fw-bold mb-3 fs-6">
+                        Soluciones
+                    </h5>
+
                     <ul class="list-unstyled text-secondary small mb-0">
-                        <li class="mb-2">Landing Pages de Alta Conversión</li>
-                        <li class="mb-2">Sitios Web Institucionales</li>
-                        <li class="mb-2">Desarrollo UI/UX Personalizado</li>
-                        <li class="mb-2">Sistemas de Agendamiento / Turnos</li>
+
+                        <li class="mb-2">
+                            Landing Pages de Alta Conversión
+                        </li>
+
+                        <li class="mb-2">
+                            Sitios Web Institucionales
+                        </li>
+
+                        <li class="mb-2">
+                            Desarrollo UI/UX Personalizado
+                        </li>
+
+                        <li class="mb-2">
+                            Sistemas de Agendamiento / Turnos
+                        </li>
+
                     </ul>
+
                 </div>
 
-                <!-- COLUMNA 4: CONTACTO Y REDES -->
-<div class="col-lg-2 col-md-6">
-    <h5 class="text-warning fw-bold mb-3 fs-6">Contacto</h5>
-    <div class="d-flex flex-column gap-2 small">
-        <a href="https://wa.me/5491164639977" target="_blank" class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
-            <i class="bi bi-whatsapp text-warning me-2"></i> WhatsApp
-        </a>
-        <a href="https://www.instagram.com/yellowwebstudio3/" target="_blank" class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
-            <i class="bi bi-instagram text-warning me-2"></i> Instagram
-        </a>
-        <a href="mailto:yellowwebstudio3@gmail.com" class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
-            <i class="bi bi-envelope text-warning me-2"></i> yellowwebstudio3@gmail.com
-        </a>
-    </div>
-</div>
+
+                <!-- CONTACTO -->
+                <div class="col-lg-2 col-md-6">
+
+                    <h5 class="text-warning fw-bold mb-3 fs-6">
+                        Contacto
+                    </h5>
+
+                    <div class="d-flex flex-column gap-2 small">
+
+                        <a href="https://wa.me/5491164639977"
+                           target="_blank"
+                           class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
+
+                            <i class="bi bi-whatsapp text-warning me-2"></i>
+                            WhatsApp
+
+                        </a>
+
+                        <a href="https://www.instagram.com/yellowwebstudio3/"
+                           target="_blank"
+                           class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
+
+                            <i class="bi bi-instagram text-warning me-2"></i>
+                            Instagram
+
+                        </a>
+
+                        <a href="mailto:yellowwebstudio3@gmail.com"
+                           class="text-secondary text-decoration-none hover-yellow d-flex align-items-center">
+
+                            <i class="bi bi-envelope text-warning me-2"></i>
+                            yellowwebstudio3@gmail.com
+
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
+
 
             <hr class="border-secondary opacity-25 my-4">
 
+
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center small text-secondary">
-                <p class="mb-2 mb-sm-0">&copy; 2026 :// YELLOW Web Studio. Todos los derechos reservados.</p>
-                <p class="mb-0">Desarrollado con <i class="bi bi-heart-fill text-warning mx-1"></i> en Argentina.</p>
+
+                <p class="mb-2 mb-sm-0">
+                    &copy; 2026 :// YELLOW Web Studio. Todos los derechos reservados.
+                </p>
+
+                <p class="mb-0">
+                    Desarrollado con
+                    <i class="bi bi-heart-fill text-warning mx-1"></i>
+                    en Argentina.
+                </p>
+
             </div>
+
         </div>
+
     </footer>
 
-    <!-- JS BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Botón flotante para abrir el chat -->
-<button id="chatbot-toggle" class="btn btn-warning rounded-circle shadow-lg position-fixed d-flex justify-content-center align-items-center" style="bottom: 20px; right: 20px; width: 60px; height: 60px; z-index: 1050;">
-    <i class="bi bi-chat-dots-fill fs-3 text-dark"></i>
-</button>
 
-<!-- Ventana del Chat -->
-<div id="chatbot-window" class="card bg-dark border-warning shadow-lg position-fixed d-none" style="bottom: 90px; right: 20px; width: 350px; max-height: 500px; z-index: 1050; overflow: hidden;">
-    <!-- Header del chat -->
-    <div class="card-header bg-black border-warning border-bottom d-flex justify-content-between align-items-center p-3">
-        <div class="d-flex align-items-center">
-            <span class="text-warning fw-bold">:// YellowBot</span>
-        </div>
-        <button id="chatbot-close" class="btn-close btn-close-white" aria-label="Close"></button>
-    </div>
-    
-    <!-- Área de mensajes -->
-    <div id="chatbot-messages" class="card-body" style="height: 300px; overflow-y: auto; background-color: #1a1a1a;">
-        <div class="mb-3">
-            <div class="bg-black text-white p-2 rounded-3 border border-secondary d-inline-block shadow-sm">
-                ¡Hola! Soy el asistente de Yellow Web Studio. ¿En qué te puedo ayudar hoy con tu proyecto?
+    <!-- =========================
+         JS BOOTSTRAP
+    ========================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- =========================
+         CHATBOT
+    ========================== -->
+
+    <button id="chatbot-toggle"
+            class="btn btn-warning rounded-circle shadow-lg position-fixed d-flex justify-content-center align-items-center"
+            style="bottom: 20px; right: 20px; width: 60px; height: 60px; z-index: 1050;">
+
+        <i class="bi bi-chat-dots-fill fs-3 text-dark"></i>
+
+    </button>
+
+
+    <div id="chatbot-window"
+         class="card bg-dark border-warning shadow-lg position-fixed d-none"
+         style="bottom: 90px; right: 20px; width: 350px; max-height: 500px; z-index: 1050; overflow: hidden;">
+
+        <div class="card-header bg-black border-warning border-bottom d-flex justify-content-between align-items-center p-3">
+
+            <div class="d-flex align-items-center">
+
+                <span class="text-warning fw-bold">
+                    :// YellowBot
+                </span>
+
             </div>
-        </div>
-    </div>
-    
-    <!-- Input para escribir -->
-    <div class="card-footer bg-black border-warning border-top p-2">
-        <form id="chatbot-form" class="d-flex gap-2">
-            <input type="text" id="chatbot-input" class="form-control bg-dark text-white border-secondary" placeholder="Escribí tu mensaje..." autocomplete="off" required>
-            <button type="submit" class="btn btn-warning text-dark fw-bold">
-                <i class="bi bi-send-fill"></i>
+
+            <button id="chatbot-close"
+                    class="btn-close btn-close-white"
+                    aria-label="Close">
             </button>
-        </form>
+
+        </div>
+
+
+        <div id="chatbot-messages"
+             class="card-body"
+             style="height: 300px; overflow-y: auto; background-color: #1a1a1a;">
+
+            <div class="mb-3">
+
+                <div class="bg-black text-white p-2 rounded-3 border border-secondary d-inline-block shadow-sm">
+
+                    ¡Hola! Soy el asistente de Yellow Web Studio.
+                    ¿En qué te puedo ayudar hoy con tu proyecto?
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-footer bg-black border-warning border-top p-2">
+
+            <form id="chatbot-form" class="d-flex gap-2">
+
+                <input type="text"
+                       id="chatbot-input"
+                       class="form-control bg-dark text-white border-secondary"
+                       placeholder="Escribí tu mensaje..."
+                       autocomplete="off"
+                       required>
+
+                <button type="submit"
+                        class="btn btn-warning text-dark fw-bold">
+
+                    <i class="bi bi-send-fill"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
-</div>
-<script src="js/chat.js"></script>
+
+
+    <script src="js/chat.js"></script>
+
 </body>
 
 </html>
