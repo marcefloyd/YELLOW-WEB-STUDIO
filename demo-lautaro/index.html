@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mirá cómo quedaría tu negocio online</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<div id="landing" class="wrap">
+  <span class="pill">Demo gratis · sin tarjeta</span>
+  <h1>Mirá cómo quedaría tu negocio online. Antes de pagar nada.</h1>
+  <p class="sub">Escribí el nombre de tu negocio y en segundos te armamos tu web de verdad: con turnos, reseñas, preguntas frecuentes y panel de control.</p>
+  <button class="btn-pro big" data-open>Crear mi demo PRO gratis</button>
+
+  <div class="grid">
+    <div class="plan"><h2>Básico</h2><p>Para estar en internet</p>
+      <ul><li>Landing simple con tus datos</li><li>Diseño para celular</li><li>Entrega rápida</li></ul>
+      <a class="btn" href="#" onclick="return wa('Básico')">Quiero este plan</a></div>
+    <div class="plan"><h2>Crece</h2><p>Para que te encuentren</p>
+      <ul><li>Todo lo del Básico</li><li>Google Maps y Negocio</li><li>Botón de WhatsApp</li></ul>
+      <a class="btn" href="#" onclick="return wa('Crece')">Quiero este plan</a></div>
+    <div class="plan pro"><span class="tag">Más elegido</span><h2>PRO</h2><p>Para vender y organizarte</p>
+      <ul><li>Todo lo del Crece</li><li>Turnos online o catálogo con pedidos</li><li>Panel del dueño</li><li>Textos con IA, reseñas y FAQ</li></ul>
+      <button class="btn-pro" data-open>Crear mi demo PRO gratis</button></div>
+  </div>
+
+  <div class="how">
+    <div><b>1</b><span>Escribís tu negocio</span></div>
+    <div><b>2</b><span>Generamos tu web en segundos</span></div>
+    <div><b>3</b><span>La probás: reservás, pedís, ves el panel</span></div>
+  </div>
+  <p class="note">Tu demo queda disponible por 48 hs.</p>
+</div>
+
+<div id="demo" class="hide"></div>
+
+<div class="overlay" id="overlay">
+  <div class="modal wide">
+    <div id="step1">
+      <div class="wh"><h3 id="wt">Tu negocio</h3><span id="wn"></span></div>
+      <div class="stp" id="stp"></div>
+      <div id="wz"></div>
+      <div class="err" id="err"></div>
+      <div class="row"><button id="cancel">Cancelar</button><button id="prev" class="hide">Atrás</button><button class="btn-pro" id="go">Siguiente</button></div>
+    </div>
+    <div id="step2" class="hide">
+      <h3>Armando tu web…</h3>
+      <div class="bar"><i id="barfill"></i></div>
+      <ul class="steps" id="steps"></ul>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
